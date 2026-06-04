@@ -26,7 +26,7 @@ Origin: the visual design already exists as an HTML/CSS/JS prototype exported fr
 
 - **Framework:** Next.js (App Router) + TypeScript.
 - **Styling:** Tailwind CSS + a thin layer of bespoke CSS driven by CSS custom properties. The Steam-specific pieces (windowed avatar frame, hex-level badges, angled artwork frames, count-up stats) need real CSS, not forced utilities. CSS variables drive theming → powers both Recruiter Mode and the Tweaks panel.
-- **Deploy:** Vercel.
+- **Deploy:** Vercel. **Production URL: `axelstz.fr`** (custom domain).
 - **Type pairing (from design):** `Asap` (UI/body) + `JetBrains Mono` (stats/terminal numbers).
 - **Palette (from design):** Steam navy/charcoal `--bg:#0c0d10`, `--header:#171a21`, `--header-2:#1b2838`; link blue `--link:#66c0f4`; rarity hex colors (`--r-gray/blue/purple/pink/gold`). Defined as CSS variables (overridable by Tweaks).
 
@@ -52,7 +52,7 @@ Faithful to the prototype, with the changes noted.
 - Windowed/terminal avatar frame (`c:_>` titlebar), name with caret, **Level badge (= age)** + XP item, "Trade Offer", "Edit profile" affordances (decorative).
 
 ### Artwork showcase
-- Three angled artwork frames + "+N", `axel.dev/profile` URL.
+- Three angled artwork frames + "+N", `axelstz.fr/profile` URL.
 
 ### Body — left column
 - **Featured stack** — tech icons (derived from real top languages where possible).
