@@ -16,8 +16,10 @@ Origin: the visual design already exists as an HTML/CSS/JS prototype exported fr
 
 ## 2. Owner profile / identity framing
 
+- **Display name:** Axel.S
+- **Brand / pseudo:** SHOOTS (used in nav brand, footer, avatar tag).
 - **Role title:** Junior Web Developer (junior, 0–2 yrs experience).
-- **Level = real age.** (e.g. `Level 19`.) XP item subtitle derives from a real metric (e.g. commits or projects). _Owner to provide actual age + handle._
+- **Level = real age.** (e.g. `Level 19`.) XP item subtitle derives from a real metric (e.g. commits or projects). _Owner to provide actual age._
 - Honest, on-brand framing — no inflated "Level 26 / Full Stack" placeholder from the prototype.
 
 ## 3. Tech stack & architecture
@@ -43,8 +45,8 @@ Origin: the visual design already exists as an HTML/CSS/JS prototype exported fr
 Faithful to the prototype, with the changes noted.
 
 ### Top
-- **Nav bar** — brand `AXEL.DEV` + nav: PROJECTS / COMMUNITY / PROFILE / ACTIVITY / SUPPORT (used as section anchors).
-- **CUT: top micro-bar** — the `Install App / 🔔 / AXEL·Available / avatar` row is removed. It reads as logged-in Steam *client* chrome and weakens the first impression.
+- **Nav bar** — brand `SHOOTS` + nav: PROJECTS / COMMUNITY / PROFILE / ACTIVITY / SUPPORT (used as section anchors).
+- **CUT: top micro-bar** — the `Install App / 🔔 / SHOOTS·Available / avatar` row is removed. It reads as logged-in Steam *client* chrome and weakens the first impression.
 
 ### Profile header
 - Windowed/terminal avatar frame (`c:_>` titlebar), name with caret, **Level badge (= age)** + XP item, "Trade Offer", "Edit profile" affordances (decorative).
@@ -92,7 +94,7 @@ Faithful to the prototype, with the changes noted.
 
 ## 8. Legal / branding
 
-- Recreate **atmosphere, layout, hierarchy, dark theme** only. No Steam/Valve logos, assets, branded chrome, or copyrighted elements. Original `AXEL.DEV` identity throughout. Footer disclaimer present.
+- Recreate **atmosphere, layout, hierarchy, dark theme** only. No Steam/Valve logos, assets, branded chrome, or copyrighted elements. Original `SHOOTS` / `Axel.S` identity throughout. Footer disclaimer present.
 
 ## 9. Owner-provided content checklist
 
