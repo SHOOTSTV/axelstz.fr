@@ -496,3 +496,10 @@ body.motion-off #stars { display: none; }
   .fav-stats { flex-wrap: wrap; gap: 18px; }
   .trade-items { gap: 10px; }
 }
+
+.fav-actions { display: flex; gap: 8px; margin-top: 12px; }
+.btn-live, .btn-code { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 2px; font-weight: 700; font-size: 13px; line-height: 1; }
+.btn-live { background: var(--btn-grad); color: #1e2d0a; }
+.btn-live:hover { background: var(--btn-grad-hover); color: #16210a; }
+.btn-code { background: #2a3f52; color: #c7d5e0; }
+.btn-code:hover { color: #fff; }
