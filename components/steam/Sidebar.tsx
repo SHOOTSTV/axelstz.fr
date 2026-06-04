@@ -1,0 +1,70 @@
+import type { PortfolioData } from "@/lib/types";
+import { Icon } from "@/components/primitives/Icon";
+import { Frame } from "@/components/primitives/Frame";
+import { Reveal } from "@/components/primitives/Reveal";
+import { fmt } from "@/components/primitives/StatNum";
+
+export function Sidebar({ data }: { data: PortfolioData }) {
+  const p = data.profile;
+  return (
+    <Reveal className="side-panel">
+      <div className={`side-online ${p.online ? "" : "offline"}`}>{p.online ? "Online" : "Offline"}</div>
+
+      <div className="side-block">
+        <div className="side-h">Badges <span className="n">{data.badges.length}</span></div>
+        <div className="badge-row">
+          {data.badges.map((b, i) => (
+            <span className="badge-ic" key={i} style={{ background: `linear-gradient(160deg, ${b.color}, #14171b)` }}>
+              {b.icon ? <Icon name={b.icon} size={20} /> : b.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="side-block">
+        <div className="count-list">
+          {data.counts.map((c) => (
+            <div className="count-row" key={c.label}>
+              <span className="lbl">{c.label}</span>
+              {c.n != null && <span className="n">{fmt(c.n)}</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="side-block">
+        <div className="side-h">Communities <span className="n">{data.communities.length}</span></div>
+        {data.communities.map((g) => (
+          <div className="grp-row" key={g.name}>
+            <span className="grp-av"><Frame src={g.image} alt={g.name} placeholder="" /></span>
+            <span className="grp-info">
+              <div className="nm">{g.name}</div>
+              <div className="mm">{g.members}</div>
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="side-block">
+        <div className="side-h">Social <span className="n">{data.social.length}</span></div>
+        {data.social.map((s) => (
+          <a
+            className="contact-row"
+            key={s.name}
+            href={s.href}
+            target="_blank"
+            rel="noreferrer"
+            style={{ ["--st" as string]: s.online ? "var(--ingame)" : "var(--offline)" } as React.CSSProperties}
+          >
+            <span className="contact-av"><Icon name={s.icon} size={18} /></span>
+            <span className="contact-info">
+              <div className="nm">{s.name}</div>
+              <div className="sub">{s.sub}</div>
+            </span>
+            <span className="hexlvl" style={{ ["--hx" as string]: s.color } as React.CSSProperties}><span>{s.level}</span></span>
+          </a>
+        ))}
+      </div>
+    </Reveal>
+  );
+}
