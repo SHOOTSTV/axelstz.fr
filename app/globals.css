@@ -513,3 +513,23 @@ body.motion-off #stars { display: none; }
 .tweak-swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; }
 .tweak-swatch.active { border-color: #fff; }
 .tweak-row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+/* ===== Recruiter resume view ===== */
+.resume { max-width: 780px; margin: 0 auto; padding: 32px 8px 64px; color: #d8dee3; font-family: var(--font); line-height: 1.6; }
+.resume-head h1 { font-size: 34px; font-weight: 700; margin: 0; color: #fff; }
+.resume-role { color: var(--link); font-size: 16px; margin: 4px 0 14px; }
+.resume-contact { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; }
+.resume-cv { display: inline-block; background: var(--btn-grad); color: #1e2d0a; font-weight: 700; padding: 8px 16px; border-radius: 3px; }
+.resume-cv:hover { background: var(--btn-grad-hover); color: #16210a; }
+.resume-section { margin-top: 26px; }
+.resume-section h2 { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--hair); padding-bottom: 6px; }
+.resume-section h3 { margin: 8px 0 4px; color: #fff; font-size: 16px; }
+.resume-skills, .resume-projects { padding-left: 18px; }
+.resume-skills li, .resume-projects li { margin: 4px 0; }
+@media print {
+  body { background: #fff; }
+  .resume { color: #111; }
+  .resume-head h1, .resume-section h3 { color: #000; }
+  .resume-role { color: #225; }
+  .recruiter-toggle, .tweaks-panel, .bg-stage { display: none !important; }
+}
