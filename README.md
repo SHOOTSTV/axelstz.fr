@@ -28,8 +28,20 @@ Edit **`data/portfolio.ts`** — it's the single content file. Replace every `_T
 - [ ] `projects` — your real projects.
 - [ ] `testimonials` — real recommendations.
 
-Drop real images into **`public/images/`** (the `Frame` component shows a labelled placeholder until then):
-`avatar.png`, `art-1.png`–`art-3.png`, `favg.png`, `act1.png`–`act3.png`, community/testimonial images referenced in `data/portfolio.ts`.
+### Images
+
+Each slot uses `object-fit: cover`; export a master ~3–4× the display size and **keep the ratio** (`next/image` handles delivery format/sizing). Until a file exists, leave the data field `""` — the `Frame` shows a themed placeholder, never a broken image.
+
+| Slot | File | Ratio | Master px |
+|---|---|---|---|
+| Avatar | `avatar.png` | 1:1 | 512×512 |
+| Artwork ×3 | `art-1/2/3.png` | portrait 3:5 | 900×1500 (center the subject — frames are skewed & cropped) |
+| Featured logo | `favg.png` | 1:1 | 256×256 |
+| Project capsule | `act1.png`, `act2.png` | 8:3 | 736×276 |
+| Community logo | `grp1/grp2.png` | 1:1 | 128×128 |
+| Testimonial avatar | `cm*.png` | 1:1 | 128×128 |
+
+Capture reproducibly with **`npm run shots`** (edit `scripts/shots.mjs` `SHOTS` with your app URLs/screens). Screenshot your apps already in a dark theme near the palette (`#0c0d10` / `#1b2838`, accent `#66c0f4`) so they sit natively in-theme; the in-code overlay adds the scrim + accent border. After dropping a file, set its path in `data/portfolio.ts`.
 
 Replace the placeholder CV at **`public/cv/Axel-S-CV.pdf`** with your real CV.
 
