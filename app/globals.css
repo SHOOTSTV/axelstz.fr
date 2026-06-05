@@ -503,3 +503,13 @@ body.motion-off #stars { display: none; }
 .btn-live:hover { background: var(--btn-grad-hover); color: #16210a; }
 .btn-code { background: #2a3f52; color: #c7d5e0; }
 .btn-code:hover { color: #fff; }
+
+/* ===== Recruiter toggle + Tweaks panel ===== */
+.recruiter-toggle { background: var(--btn-grad); color: #1e2d0a; border: none; padding: 7px 14px; border-radius: 3px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font); }
+.recruiter-toggle:hover { background: var(--btn-grad-hover); color: #16210a; }
+.tweaks-panel { position: fixed; right: 16px; bottom: 16px; z-index: 50; background: #16202d; border: 1px solid var(--hair); border-radius: 6px; padding: 12px 14px; box-shadow: 0 8px 26px rgba(0,0,0,.6); font-size: 12px; color: var(--text); }
+.tweaks-panel h5 { margin: 0 0 8px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.tweak-swatches { display: flex; gap: 6px; margin-bottom: 10px; }
+.tweak-swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; }
+.tweak-swatch.active { border-color: #fff; }
+.tweak-row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
