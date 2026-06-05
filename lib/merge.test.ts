@@ -19,4 +19,8 @@ describe("mergeGitHub", () => {
   it("leaves data unchanged when github is null", () => {
     expect(mergeGitHub(portfolio, null)).toEqual(portfolio);
   });
+  it("prepends github activity rows when present", () => {
+    const m = mergeGitHub(portfolio, gh);
+    expect(m.projects[0].name.toLowerCase()).toContain("taskforge");
+  });
 });
