@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://axelstz.fr"),
   title: "Axel.S — Junior Web Developer",
   description: "SHOOTS — a Steam-profile-inspired developer portfolio by Axel.S.",
+  keywords: ["Axel.S", "SHOOTS", "web developer", "portfolio", "React", "Next.js", "TypeScript", "junior developer"],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "https://axelstz.fr",
+    title: "Axel.S — Junior Web Developer",
+    description: "SHOOTS — a Steam-profile-inspired developer portfolio by Axel.S.",
+    siteName: "SHOOTS",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axel.S — Junior Web Developer",
+    description: "SHOOTS — a Steam-profile-inspired developer portfolio by Axel.S.",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
