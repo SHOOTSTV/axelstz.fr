@@ -21,4 +21,13 @@ describe("portfolio data", () => {
     const names = portfolio.social.map(s => s.name.toLowerCase());
     expect(names).not.toContain("kormac");
   });
+  it("is trimmed to real projects (no prototype fillers)", () => {
+    const names = portfolio.projects.map((p) => p.name.toLowerCase());
+    expect(names.some((n) => n.includes("tabflow"))).toBe(false);
+    expect(names.some((n) => n.includes("forge"))).toBe(false);
+  });
+  it("project count metric matches the real project list", () => {
+    const projectsCount = portfolio.counts.find((c) => c.label === "Projects");
+    expect(projectsCount?.n).toBe(portfolio.projects.length);
+  });
 });
