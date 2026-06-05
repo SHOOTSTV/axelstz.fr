@@ -1,7 +1,6 @@
+import { portfolio } from "@/data/portfolio";
+import { Shell } from "@/components/Profile";
+
 export default function Page() {
-  return (
-    <main className="content" style={{ paddingTop: 40 }}>
-      <h1 className="ph-name">SHOOTS — boot check</h1>
-    </main>
-  );
+  return <Shell data={portfolio} github={null} />;
 }
