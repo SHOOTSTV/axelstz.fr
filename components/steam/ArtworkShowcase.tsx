@@ -12,7 +12,6 @@ export function ArtworkShowcase({ data }: { data: PortfolioData }) {
             </div>
           </div>
         ))}
-        <div className="art-more">+ 11</div>
       </div>
       <div className="art-url">{data.profile.url}</div>
     </div>
