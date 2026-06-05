@@ -533,3 +533,27 @@ body.motion-off #stars { display: none; }
   .resume-role { color: #225; }
   .recruiter-toggle, .tweaks-panel, .bg-stage { display: none !important; }
 }
+
+/* ===== Responsive: tablet / mobile ===== */
+@media (max-width: 760px) {
+  .nav-main { gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .top-main { gap: 18px; }
+  .stat-row { flex-wrap: wrap; gap: 14px; }
+  .fav-group { flex-direction: column; }
+}
+@media (max-width: 640px) {
+  :root { --content: 100%; }
+  .content { padding: 0 12px; }
+  .profile-head { grid-template-columns: 1fr; gap: 16px; }
+  .av-window { width: 150px; }
+  .ph-level { grid-column: 1 / -1; }
+  .ph-name { font-size: 24px; }
+  .brand .word { font-size: 21px; }
+  .art-frames { gap: 6px; }
+  .trade-items { flex-wrap: wrap; }
+  .stat-col .v { font-size: 30px; }
+  .comment-box, .comment { flex-wrap: wrap; }
+  .cb-field textarea { min-width: 0; width: 100%; }
+  .tweaks-panel { right: 8px; bottom: 8px; padding: 10px; }
+  .resume-head h1 { font-size: 26px; }
+}
