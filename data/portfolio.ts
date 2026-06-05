@@ -9,14 +9,17 @@ export const portfolio: PortfolioData = {
     url: "axelstz.fr/profile",
     level: 19, // _TODO_OWNER: your real age
     online: true,
-    xp: { title: "Junior Web Developer", sub: "Level 19 · building on the web" },
+    xp: {
+      title: "Junior Web Developer",
+      sub: "Level 19 · building on the web",
+    },
   },
   nav: ["PROJECTS", "COMMUNITY", "PROFILE", "ACTIVITY", "SUPPORT"],
   counts: [
-    { label: "Projects", n: 1 },        // _TODO_OWNER: keep equal to projects.length
-    { label: "Screenshots", n: 3 },     // _TODO_OWNER: real screenshot count
+    { label: "Projects", n: 1 }, // _TODO_OWNER: keep equal to projects.length
+    { label: "Screenshots", n: 3 }, // _TODO_OWNER: real screenshot count
     { label: "Repositories", n: null }, // filled live (Task 29)
-    { label: "Reviews", n: 2 },         // _TODO_OWNER: real testimonial count
+    { label: "Reviews", n: 2 }, // _TODO_OWNER: real testimonial count
   ],
   badges: [
     { label: "1", color: "#5a4b8a" },
@@ -25,45 +28,106 @@ export const portfolio: PortfolioData = {
   ],
   communities: [
     { name: "Indie Hackers", members: "22,475 members", image: "" }, // _TODO_OWNER: drop /public/images/grp1.png then set path
-    { name: "React", members: "411,137 members", image: "" },         // _TODO_OWNER: grp2.png
+    { name: "React", members: "411,137 members", image: "" }, // _TODO_OWNER: grp2.png
   ],
   social: [
-    { name: "GitHub", sub: "@shoots", icon: "github", href: "https://github.com/", level: 19, color: "#3a3a3a", online: true }, // _TODO_OWNER href
-    { name: "LinkedIn", sub: "Axel.S", icon: "linkedin", href: "https://linkedin.com/", level: 19, color: "#2a5a8a", online: true },
-    { name: "Discord", sub: "shoots", icon: "discord", href: "#", level: 19, color: "#5a3a8a", online: false },
-    { name: "Email", sub: "hello@axelstz.fr", icon: "mail", href: "mailto:hello@axelstz.fr", level: 19, color: "#7a5a2a", online: false },
+    {
+      name: "GitHub",
+      sub: "@SHOOTSTV",
+      icon: "github",
+      href: "https://github.com/SHOOTSTV",
+      level: 19,
+      color: "#3a3a3a",
+      online: true,
+    },
+    {
+      name: "LinkedIn",
+      sub: "Axel.S",
+      icon: "linkedin",
+      href: "https://linkedin.com/",
+      level: 19,
+      color: "#2a5a8a",
+      online: true,
+    },
+    {
+      name: "Discord",
+      sub: "shoots",
+      icon: "discord",
+      href: "#",
+      level: 19,
+      color: "#5a3a8a",
+      online: false,
+    },
+    {
+      name: "Email",
+      sub: "hello@axelstz.fr",
+      icon: "mail",
+      href: "mailto:hello@axelstz.fr",
+      level: 19,
+      color: "#7a5a2a",
+      online: false,
+    },
   ],
   featuredStack: [
-    { icon: "code" }, { icon: "layers" }, { icon: "cpu", hot: true }, { icon: "database" }, { icon: "server" },
+    { icon: "code" },
+    { icon: "layers" },
+    { icon: "cpu", hot: true },
+    { icon: "database" },
+    { icon: "server" },
   ],
   bigStats: [
     { key: "projects", value: 1, label: "Projects shipped" }, // _TODO_OWNER: match projects.length
-    { key: "repos", value: 0, label: "Repositories" },   // live
+    { key: "repos", value: 0, label: "Repositories" }, // live
     { key: "commits", value: 0, label: "Total commits" }, // live
   ],
   about: {
     star: "Axel.S",
     specHead: "My stack :",
-    specs: ["React 19 · Next.js 16", "TypeScript · Tailwind", "Supabase · PostgreSQL", "Vercel · GitHub · Claude"],
+    specs: [
+      "Next.js 16 · React 19",
+      "TypeScript · Tailwind v4",
+      "Supabase · Postgres · Auth",
+      "Zod · Recharts · Vercel",
+    ],
   },
   featuredProject: {
-    name: "Nebula Analytics", type: "Flagship project", image: "", // _TODO_OWNER: drop favg.png (256×256) then set "/images/favg.png"
-    desc: "Real-time product analytics for indie SaaS teams — event pipelines, cohort funnels and AI-assisted insights.",
+    name: "MacroTrackr",
+    type: "AI nutrition tracker",
+    image: "", // _TODO_OWNER: drop favg.png (256×256) then set "/images/favg.png"
+    desc: "A nutrition tracker that logs for you. Point your camera or describe a meal in plain English — the AI handles the rest. Daily dashboards, goal tracking and history analytics. No searching, no friction.",
+    // _TODO_OWNER: feature-truthful for now — swap for real metrics (DAU, uptime, p95) once you have them.
     stats: [
-      { value: "3,412", key: "Users", cls: "members" },
-      { value: "128", key: "Live now", cls: "ingame" },
-      { value: "99.98%", key: "Uptime", cls: "online" },
-      { value: "180ms", key: "p95", cls: "chat" },
+      { value: "AI", key: "Meal logging", cls: "members" },
+      { value: "1-tap", key: "Photo log", cls: "ingame" },
+      { value: "Live", key: "Dashboards", cls: "online" },
+      { value: "0s", key: "Searching", cls: "chat" },
     ],
-    live: "#", code: "#",
+    live: "https://macrotrackr.app/",
+    code: "https://github.com/SHOOTSTV/macrotrackr",
   },
   projects: [
-    { name: "Nebula Analytics", image: "", meta: "2,306 hrs total", last: "last updated June 3", // _TODO_OWNER: set "/images/act1.png" (736×276, 8:3)
-      milestones: { done: 1, total: 1 }, achievement: { icon: "trophy", name: "First SaaS Launch", xp: "500 XP" } },
+    {
+      name: "MacroTrackr",
+      image: "/images/act1.png",
+      meta: "AI nutrition tracker",
+      last: "live · macrotrackr.app",
+      milestones: { done: 1, total: 1 },
+      achievement: { icon: "trophy", name: "Shipped to production", xp: "Live SaaS" },
+    },
   ],
   testimonials: [
-    { name: "maya.okafor", date: "Jul 20, 2024", text: "+rep shipped our MVP in 5 weeks, scaled great", image: "" }, // _TODO_OWNER: cm avatar 128×128
-    { name: "liam.petrov", date: "Feb 21, 2024", text: "+rep clean comms, zero drama", image: "" },
+    {
+      name: "maya.okafor",
+      date: "Jul 20, 2024",
+      text: "+rep shipped our MVP in 5 weeks, scaled great",
+      image: "",
+    }, // _TODO_OWNER: cm avatar 128×128
+    {
+      name: "liam.petrov",
+      date: "Feb 21, 2024",
+      text: "+rep clean comms, zero drama",
+      image: "",
+    },
   ],
   footer: {
     cols: [
