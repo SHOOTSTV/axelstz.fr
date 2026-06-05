@@ -12,7 +12,9 @@ function useCountUp(target: number, vis: boolean, duration = 1500) {
   useEffect(() => {
     if (!vis || done.current) return;
     done.current = true;
-    if (document.body.classList.contains("motion-off")) {
+    const reducedMotion = typeof window !== "undefined"
+      && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (document.body.classList.contains("motion-off") || reducedMotion) {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- snap to final value when motion is disabled
       setV(target);
       return;

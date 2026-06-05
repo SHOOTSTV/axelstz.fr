@@ -40,8 +40,8 @@ export function Testimonials({ data }: { data: PortfolioData }) {
         </span>
       </div>
 
-      {list.map((c, i) => (
-        <div className="comment" key={i}>
+      {list.map((c) => (
+        <div className="comment" key={`${c.name}-${c.date}-${c.text}`}>
           <span className="c-av"><Frame src={c.image} alt={c.name} placeholder="" /></span>
           <span className="c-main">
             <span className="c-top">

@@ -45,7 +45,7 @@ export const portfolio: PortfolioData = {
   about: {
     star: "Axel.S",
     specHead: "My stack :",
-    specs: ["React 18 · Next.js 15", "TypeScript · Tailwind", "Supabase · PostgreSQL", "Vercel · GitHub · Claude"],
+    specs: ["React 19 · Next.js 16", "TypeScript · Tailwind", "Supabase · PostgreSQL", "Vercel · GitHub · Claude"],
   },
   featuredProject: {
     name: "Nebula Analytics", type: "Flagship project", image: "/images/favg.png", // _TODO_OWNER

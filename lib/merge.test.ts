@@ -23,4 +23,11 @@ describe("mergeGitHub", () => {
     const m = mergeGitHub(portfolio, gh);
     expect(m.projects[0].name.toLowerCase()).toContain("taskforge");
   });
+  it("derives the featured stack from top languages", () => {
+    const m = mergeGitHub(portfolio, gh);
+    const icons = m.featuredStack.map((s) => s.icon);
+    expect(icons).toContain("code"); // TypeScript
+    expect(icons).toContain("layers"); // CSS
+    expect(m.featuredStack.some((s) => s.hot)).toBe(true);
+  });
 });

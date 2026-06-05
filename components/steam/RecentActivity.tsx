@@ -41,7 +41,7 @@ export function RecentActivity({ data }: { data: PortfolioData }) {
           <span className="h">Recent activity</span>
           <span className="hrs">35.4 hrs past 2 weeks</span>
         </div>
-        {data.projects.map((g) => <GameRow g={g} key={g.name} />)}
+        {data.projects.map((g, i) => <GameRow g={g} key={`${i}-${g.name}`} />)}
         <div className="activity-foot">
           Show <a href="#">all recent projects</a> | <a href="#">reviews</a>
         </div>
