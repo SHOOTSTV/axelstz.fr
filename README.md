@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SHOOTS — axelstz.fr
 
-## Getting Started
+A personal developer portfolio for **Axel.S** styled as a **Steam community profile**, with a one-click **Recruiter Mode** (clean resume view) and **live GitHub stats**.
 
-First, run the development server:
+Built with Next.js (App Router) + TypeScript + Tailwind v4, deployed on Vercel.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm test         # Vitest + React Testing Library
+npm run build    # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `/` — Steam profile (default)
+- `/?recruiter=1` — deep link straight to the clean resume view
+- The **⇄ Recruiter mode** button (top-right) toggles between the two; the choice persists in `localStorage`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Make it yours (owner checklist)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Edit **`data/portfolio.ts`** — it's the single content file. Replace every `_TODO_OWNER` marker:
 
-## Learn More
+- [ ] `profile.level` — your real **age** (the level badge).
+- [ ] `social[*].href` — real GitHub / LinkedIn / Discord / email links.
+- [ ] `communities` — real orgs/communities (or trim the list).
+- [ ] `featuredProject` — your flagship project (copy, metrics, `live`/`code` URLs, image).
+- [ ] `projects` — your real projects.
+- [ ] `testimonials` — real recommendations.
 
-To learn more about Next.js, take a look at the following resources:
+Drop real images into **`public/images/`** (the `Frame` component shows a labelled placeholder until then):
+`avatar.png`, `art-1.png`–`art-3.png`, `favg.png`, `act1.png`–`act3.png`, community/testimonial images referenced in `data/portfolio.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Replace the placeholder CV at **`public/cv/Axel-S-CV.pdf`** with your real CV.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Live GitHub stats
 
-## Deploy on Vercel
+Repositories, total commits, stars, recent activity and top languages are pulled live from GitHub (cached hourly via ISR). Configure env vars (see `.env.example`):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+cp .env.example .env.local
+# GITHUB_USERNAME=your-github-username
+# GITHUB_TOKEN=optional-personal-access-token   # higher rate limit
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Without `GITHUB_USERNAME`, the site renders fully from the static content in `data/portfolio.ts` (no live data, never breaks).
+
+## Architecture
+
+- `data/portfolio.ts` — hand-authored content (typed by `lib/types.ts`).
+- `lib/github.ts` — server-side GitHub fetcher (ISR-cached).
+- `lib/merge.ts` — merges live GitHub data into the content.
+- `components/steam/*` — the Steam profile sections.
+- `components/recruiter/*` — Recruiter Mode toggle + resume view.
+- `components/ModeProvider.tsx` — recruiter-mode + theme (Tweaks) state.
+- `app/globals.css` — the ported Steam stylesheet + theming via CSS variables.
+- `design-reference/` — the original design prototype (source of truth for the look).
+
+## Deploy (Vercel)
+
+1. Push to GitHub.
+2. Import the repo in Vercel.
+3. Set env vars `GITHUB_USERNAME` (and optional `GITHUB_TOKEN`).
+4. Add the custom domain **axelstz.fr**.
+
+## Notes
+
+Steam-profile-inspired layout — **not affiliated with or endorsed by Valve**. No Steam/Valve logos or assets are used; all branding is original (SHOOTS / Axel.S).

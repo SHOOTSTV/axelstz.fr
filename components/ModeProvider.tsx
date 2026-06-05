@@ -14,15 +14,19 @@ export function ModeProvider({ children }: { children: React.ReactNode }) {
   const [recruiter, setRecruiter] = useState(false);
   const [tweaks, setTweaks] = useState<Tweaks>(DEFAULT_TWEAKS);
 
-  // hydrate from URL + localStorage
+  // hydrate from URL + localStorage (client-only; cannot run during SSR)
   useEffect(() => {
     const url = new URL(window.location.href);
-    if (url.searchParams.get("recruiter") === "1") setRecruiter(true);
-    else if (localStorage.getItem("recruiter") === "1") setRecruiter(true);
+    const wantRecruiter =
+      url.searchParams.get("recruiter") === "1" || localStorage.getItem("recruiter") === "1";
     const saved = localStorage.getItem("tweaks");
+    let savedTweaks: Tweaks | null = null;
     if (saved) {
-      try { setTweaks({ ...DEFAULT_TWEAKS, ...JSON.parse(saved) }); } catch {}
+      try { savedTweaks = { ...DEFAULT_TWEAKS, ...JSON.parse(saved) }; } catch {}
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrating from client-only URL/localStorage
+    if (wantRecruiter) setRecruiter(true);
+    if (savedTweaks) setTweaks(savedTweaks);
   }, []);
 
   useEffect(() => { localStorage.setItem("recruiter", recruiter ? "1" : "0"); }, [recruiter]);

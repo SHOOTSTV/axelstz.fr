@@ -12,7 +12,11 @@ function useCountUp(target: number, vis: boolean, duration = 1500) {
   useEffect(() => {
     if (!vis || done.current) return;
     done.current = true;
-    if (document.body.classList.contains("motion-off")) { setV(target); return; }
+    if (document.body.classList.contains("motion-off")) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- snap to final value when motion is disabled
+      setV(target);
+      return;
+    }
     const t0 = performance.now();
     const fb = setTimeout(() => setV(target), duration + 300);
     let raf = 0;
