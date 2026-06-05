@@ -106,16 +106,6 @@ a:hover { color: var(--bright); }
 .topbar-inner { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
 
 .top-main { display: flex; align-items: center; gap: 36px; height: 56px; }
-.brand { display: flex; align-items: center; gap: 10px; }
-.brand .logo {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #2a3f52, #0b1722 70%);
-  display: grid; place-items: center; position: relative;
-  border: 1px solid #33485c;
-}
-.brand .logo b { color: #cdd9e4; font-size: 14px; font-weight: 800; }
-.brand .word { font-size: 25px; font-weight: 700; letter-spacing: .02em; color: #d8e0e7; }
-.brand .word span { color: var(--link); }
 .nav-main { display: flex; gap: 26px; align-items: center; }
 .nav-main a {
   font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
@@ -507,12 +497,6 @@ body.motion-off #stars { display: none; }
 /* ===== Recruiter toggle + Tweaks panel ===== */
 .recruiter-toggle { background: var(--btn-grad); color: #1e2d0a; border: none; padding: 7px 14px; border-radius: 3px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font); }
 .recruiter-toggle:hover { background: var(--btn-grad-hover); color: #16210a; }
-.tweaks-panel { position: fixed; right: 16px; bottom: 16px; z-index: 50; background: #16202d; border: 1px solid var(--hair); border-radius: 6px; padding: 12px 14px; box-shadow: 0 8px 26px rgba(0,0,0,.6); font-size: 12px; color: var(--text); }
-.tweaks-panel h5 { margin: 0 0 8px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-.tweak-swatches { display: flex; gap: 6px; margin-bottom: 10px; }
-.tweak-swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; }
-.tweak-swatch.active { border-color: #fff; }
-.tweak-row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 
 /* ===== Recruiter resume view ===== */
 .resume { max-width: 780px; margin: 0 auto; padding: 32px 8px 64px; color: #d8dee3; font-family: var(--font); line-height: 1.6; }
@@ -531,7 +515,7 @@ body.motion-off #stars { display: none; }
   .resume { color: #111; }
   .resume-head h1, .resume-section h3 { color: #000; }
   .resume-role { color: #225; }
-  .recruiter-toggle, .tweaks-panel, .bg-stage { display: none !important; }
+  .recruiter-toggle, .bg-stage { display: none !important; }
 }
 
 /* ===== Responsive: tablet / mobile ===== */
@@ -548,13 +532,11 @@ body.motion-off #stars { display: none; }
   .av-window { width: 150px; }
   .ph-level { grid-column: 1 / -1; }
   .ph-name { font-size: 24px; }
-  .brand .word { font-size: 21px; }
   .art-frames { gap: 6px; }
   .trade-items { flex-wrap: wrap; }
   .stat-col .v { font-size: 30px; }
   .comment-box, .comment { flex-wrap: wrap; }
   .cb-field textarea { min-width: 0; width: 100%; }
-  .tweaks-panel { right: 8px; bottom: 8px; padding: 10px; }
   .resume-head h1 { font-size: 26px; }
 }
 
@@ -569,3 +551,28 @@ a:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visib
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------------- THEME OVERLAY (in-code grade) ---------------- */
+.game-cap, .fav-av { position: relative; }
+
+.game-cap::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(8,13,20,.55), rgba(8,13,20,0) 60%);
+  box-shadow: inset 0 0 0 1px rgba(102,192,244,.22), inset 0 0 24px rgba(0,0,0,.5);
+}
+
+.fav-av::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(102,192,244,.22);
+}
+
+.art-frame .inner { position: relative; }
+.art-frame .inner::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(8,13,20,.45), rgba(8,13,20,0) 55%),
+    radial-gradient(120% 80% at 50% 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,.35) 100%);
+}
+
+/* Optional: harmonize a mismatched (light) screenshot. Add class on the slot's container. */
+.shot-duo .frame img { filter: saturate(.9) contrast(1.05); }
