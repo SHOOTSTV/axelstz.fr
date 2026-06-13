@@ -1,6 +1,7 @@
 import type { PortfolioData } from "@/lib/types";
 import { Icon } from "@/components/primitives/Icon";
 import { Frame } from "@/components/primitives/Frame";
+import { StatNum } from "@/components/primitives/StatNum";
 
 export function ProfileHeader({ data }: { data: PortfolioData }) {
   const p = data.profile;
@@ -31,7 +32,7 @@ export function ProfileHeader({ data }: { data: PortfolioData }) {
           <div className="ph-level">
             <div className="lvl-row">
               <span className="lvl-word">Level</span>
-              <span className="lvl-badge">{p.level}</span>
+              <span className="lvl-badge" title="Account level"><StatNum value={p.level} /></span>
             </div>
             <div className="lvl-xp-item">
               <span className="xp-ic"><Icon name="zap" size={30} /></span>

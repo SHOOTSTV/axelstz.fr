@@ -172,7 +172,15 @@ a:hover { color: var(--bright); }
   background: radial-gradient(circle at 50% 50%, #2a2f36, #14171b);
   border: 2px solid #3a4c5e;
   box-shadow: 0 0 0 2px #14171b, 0 0 14px rgba(102,192,244,.25);
+  /* pulse once, timed to land as the level count-up finishes (~1.5s) */
+  animation: lvlPulse .6s ease-out 1.5s 1;
 }
+@keyframes lvlPulse {
+  0%, 100% { box-shadow: 0 0 0 2px #14171b, 0 0 14px rgba(102,192,244,.25); }
+  50% { box-shadow: 0 0 0 2px #14171b, 0 0 26px rgba(102,192,244,.6); }
+}
+body.motion-off .lvl-badge { animation: none; }
+@media (prefers-reduced-motion: reduce) { .lvl-badge { animation: none; } }
 .lvl-xp-item { display: flex; align-items: center; gap: 14px; margin-top: 26px; }
 .lvl-xp-item .xp-ic {
   width: 54px; height: 40px; display: grid; place-items: center; color: #c7d5e0;

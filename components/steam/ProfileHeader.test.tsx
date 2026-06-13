@@ -4,10 +4,11 @@ import { ProfileHeader } from "@/components/steam/ProfileHeader";
 import { portfolio } from "@/data/portfolio";
 
 describe("ProfileHeader", () => {
-  it("renders name, level badge = age, and xp title", () => {
+  it("renders name, an animated level badge, and xp title", () => {
     render(<ProfileHeader data={portfolio} />);
     expect(screen.getByText("Axel.S")).toBeTruthy();
-    expect(screen.getByText(String(portfolio.profile.level))).toBeTruthy();
+    // level animates from 0 via StatNum, so assert the badge itself, not the value
+    expect(screen.getByTitle("Account level")).toBeTruthy();
     expect(screen.getByText(portfolio.profile.xp.title)).toBeTruthy();
     expect(screen.getByText(portfolio.profile.statement)).toBeTruthy();
   });
