@@ -10,6 +10,27 @@
 
 **Source review:** This plan operationalizes the Awwwards-style review delivered in chat on 2026-06-05. Score targets per task reference that review's baseline (Design 6 / Usability 5 / Creativity 8 / Content 3 / Performance 6).
 
+---
+
+## ⟳ Reconciliation (2026-06-13)
+
+Since this plan was written, a scope-trim pass removed three subsystems it assumed: the **ArtworkShowcase** hero, the **Tweaks theming panel**, and the **SHOOTS brand wordmark**. This changes some tasks. Authoritative status per task — read this before picking work:
+
+| Task | Status | Note |
+|------|--------|------|
+| T1 — Frame placeholder | ✅ **valid (reframed)** | ArtworkShowcase hero is gone, but empty `Frame`s remain (avatar, community group images, testimonial/contact avatars). Placeholder work still applies to those slots — just not the "first thing a juror sees" hero framing. |
+| T2 — hide "0" stats | ⬜ **valid, not done** | `BigStats.tsx` still maps every tile incl. `repos:0` / `commits:0`. |
+| T3 — de-fabricate content | 🟡 **partial** | `featuredProject.stats` already feature-truthful ✅. **Remaining:** `testimonials` still use fabricated `+rep` quotes; `communities` still show invented `22,475` / `411,137` member counts. |
+| T4 — nav + footer links | ⬜ **valid, not done** | nav `["PROJECTS","COMMUNITY","PROFILE","ACTIVITY","SUPPORT"]` → `#projects` and `#support` are dead (real IDs: `#top #profile #activity #community`). Footer + social still all `href="#"`; drop the now-dead "Showcase" footer link. |
+| T5 — remove dead chrome | 🟡 **mostly valid** | `.art-more +N` bullet already resolved (removed with ArtworkShowcase). **Remaining:** "Trade Offer" (ProfileHeader + AboutMe), "Edit profile", "Subscribe to thread" still present. |
+| T6 / T7 / T8 | ⬜ **valid, not done** | Display headline, featured spotlight + MagneticButton, View-Transition recruiter swap. |
+| T9 — wordmark + scroll nav | 🟡 **rescoped** | SHOOTS wordmark was **deliberately removed** → that half is **obsolete; do not re-add**. Scroll-synced active nav (replace hardcoded `i === 2`) still valid. |
+| T10 / T11 | ⬜ **valid, not done** | Starfield pause, level-up animation. |
+| T12 — artwork parallax | ❌ **obsolete** | ArtworkShowcase removed. Skip entirely. |
+| T13 / T14 | ⬜ **valid, not done** | Achievement toasts, custom cursor. |
+
+Files removed (ignore plan references to them): `components/steam/ArtworkShowcase.tsx`, `components/tweaks/TweaksPanel.tsx`, the `.brand` wordmark in `TopBar.tsx`, the `Tweaks` state in `ModeProvider.tsx`.
+
 **Conventions:**
 - Tests live beside components (`Foo.tsx` → `Foo.test.tsx`) or in `test/`. Run with `npm run test` (vitest).
 - Lint with `npm run lint`. Build with `npm run build`.
@@ -25,11 +46,11 @@ Files this plan creates or modifies, and what each owns:
 
 - `data/portfolio.ts` — **Modify.** Single source of truth for all copy/metrics. De-fabricate content; mark owner-supplied gaps.
 - `public/images/` — **Create assets.** Real screenshots/artwork/avatar to fill `Frame` placeholders. (Owner-supplied; plan defines slots + fallback.)
-- `components/steam/TopBar.tsx` — **Modify.** Add SHOOTS wordmark; fix nav anchors; scroll-synced active state.
+- `components/steam/TopBar.tsx` — **Modify.** ~~Add SHOOTS wordmark~~ (wordmark removed 2026-06-13); fix nav anchors; scroll-synced active state.
 - `components/steam/Footer.tsx` — **Modify.** Real links from data instead of `href="#"`.
 - `components/steam/BigStats.tsx` — **Modify.** Hide zero-value tiles so nothing animates to 0.
 - `components/steam/FeaturedProject.tsx` — **Modify.** Real URLs; spotlight hover/stagger.
-- `components/steam/ArtworkShowcase.tsx` — **Modify.** Parallax/hover depth; honest `+N` count.
+- ~~`components/steam/ArtworkShowcase.tsx`~~ — **REMOVED (2026-06-13).** Deleted in scope-trim; tasks T1-hero/T12 no longer target it.
 - `components/steam/ProfileHeader.tsx` — **Modify.** Animated level-up; tooltip.
 - `components/steam/Starfield.tsx` — **Modify.** Pause off-viewport / hidden tab; lower mobile star count.
 - `components/Profile.tsx` — **Modify.** View-Transition the recruiter swap; mount achievement-toast host.
@@ -496,6 +517,8 @@ git commit -m "feat(recruiter): animate profile<->resume swap via View Transitio
 
 ## Task 9: SHOOTS wordmark + scroll-synced nav (I4)
 
+> **🟡 RESCOPED (2026-06-13):** the SHOOTS wordmark was deliberately removed in the scope-trim pass — **skip Step 1 / `.brand`; do not re-add it.** Only Step 2 (scroll-synced active state replacing the hardcoded `i === 2` in `TopBar.tsx`) and its test/commit remain.
+
 **Files:**
 - Modify: `components/steam/TopBar.tsx`
 - Modify: `app/globals.css` (`.topbar`, `.brand`)
@@ -608,6 +631,8 @@ git commit -m "feat(level): animated level-up with explanatory tooltip"
 
 ## Task 12: Parallax + hover depth on the artwork showcase (P2)
 
+> **❌ OBSOLETE (2026-06-13):** `ArtworkShowcase` was removed in the scope-trim pass. This task no longer has a target — **skip entirely.** Steps below are retained for history only.
+
 **Files:**
 - Modify: `components/steam/ArtworkShowcase.tsx`
 - Modify: `app/globals.css` (`.art-frame`, `.art-frames`)
@@ -718,7 +743,7 @@ git commit -m "feat(cursor): additive accent cursor on desktop, disabled on touc
 
 ## Self-Review Notes
 
-- **Spec coverage:** every item from the chat review's prioritized list maps to a task — C1→T1, C2→T2, C3→T3, C4→T4+T5, I1→T6, I2→T7, I3→T8, I4→T9, P4→T10, P3→T11, P2→T12, P5→T13, P1→T14.
+- **Spec coverage:** every item from the chat review's prioritized list maps to a task — C1→T1, C2→T2, C3→T3, C4→T4+T5, I1→T6, I2→T7, I3→T8, I4→T9 (wordmark half dropped), P4→T10, P3→T11, ~~P2→T12~~ (obsolete — showcase removed), P5→T13, P1→T14. **See the Reconciliation table (2026-06-13) up top for live status.**
 - **Owner gaps:** real assets (T1), real GitHub env (T2), and truthful copy/URLs (T3/T4) require owner-supplied data; these are marked `_TODO_OWNER` rather than fabricated, which is the whole point of Phase 1.
 - **Motion safety:** every new animation has a `motion-off` / `prefers-reduced-motion` escape, consistent with existing `StatNum`/`Prog`/`Reveal` patterns.
 - **Type consistency:** `FooterLink`/`FooterData` reshape in T4 is the only type change; `Footer.tsx` and `data/portfolio.ts` are updated in the same task.
