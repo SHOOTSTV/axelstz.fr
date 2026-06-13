@@ -179,8 +179,6 @@ a:hover { color: var(--bright); }
 .lvl-xp-item .xp-txt { white-space: nowrap; line-height: 1.35; }
 .lvl-xp-item .xp-txt .t { font-weight: 700; color: #e1e6ea; font-size: 14px; }
 .lvl-xp-item .xp-txt .s { color: var(--muted); font-size: 13px; }
-.ph-edit { margin-top: 30px; color: var(--text); cursor: pointer; }
-.ph-edit:hover { color: #fff; }
 
 /* ============================================================
    MAIN: left column + right sidebar

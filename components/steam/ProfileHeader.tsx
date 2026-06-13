@@ -25,7 +25,7 @@ export function ProfileHeader({ data }: { data: PortfolioData }) {
 
           <div className="ph-id">
             <span className="ph-name">{p.name} <span className="caret">▾</span></span>
-            <div className="ph-trade">Trade Offer</div>
+            <a className="ph-trade" href="#contact">Get in touch</a>
           </div>
 
           <div className="ph-level">
@@ -40,7 +40,6 @@ export function ProfileHeader({ data }: { data: PortfolioData }) {
                 <div className="s">{p.xp.sub}</div>
               </span>
             </div>
-            <div className="ph-edit">Edit profile</div>
           </div>
         </div>
       </div>
