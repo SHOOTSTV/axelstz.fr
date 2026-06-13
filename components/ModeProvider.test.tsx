@@ -19,4 +19,15 @@ describe("ModeProvider", () => {
     act(() => { screen.getByText("go").click(); });
     expect(screen.getByTestId("mode").textContent).toBe("resume");
   });
+
+  it("still toggles via the fallback path when motion-off (no View Transitions)", () => {
+    document.body.classList.add("motion-off");
+    try {
+      render(<ModeProvider><Probe /></ModeProvider>);
+      act(() => { screen.getByText("go").click(); });
+      expect(screen.getByTestId("mode").textContent).toBe("resume");
+    } finally {
+      document.body.classList.remove("motion-off");
+    }
+  });
 });

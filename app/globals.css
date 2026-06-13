@@ -487,6 +487,12 @@ body.motion-off .fav-stats > * { opacity: 1; transform: none; animation: none; }
 .recruiter-toggle { background: var(--btn-grad); color: #1e2d0a; border: none; padding: 7px 14px; border-radius: 3px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font); }
 .recruiter-toggle:hover { background: var(--btn-grad-hover); color: #16210a; }
 
+/* cross-fade the Steam<->resume swap (View Transitions API) */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .42s; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
 /* ===== Recruiter resume view ===== */
 .resume { max-width: 780px; margin: 0 auto; padding: 32px 8px 64px; color: #d8dee3; font-family: var(--font); line-height: 1.6; }
 .resume-head h1 { font-size: 34px; font-weight: 700; margin: 0; color: #fff; }
