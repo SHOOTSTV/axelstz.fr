@@ -64,7 +64,7 @@ Without `GITHUB_USERNAME`, the site renders fully from the static content in `da
 - `lib/merge.ts` — merges live GitHub data into the content.
 - `components/steam/*` — the Steam profile sections.
 - `components/recruiter/*` — Recruiter Mode toggle + resume view.
-- `components/ModeProvider.tsx` — recruiter-mode + theme (Tweaks) state.
+- `components/ModeProvider.tsx` — recruiter-mode state.
 - `app/globals.css` — the ported Steam stylesheet + theming via CSS variables.
 - `design-reference/` — the original design prototype (source of truth for the look).
 

@@ -7,5 +7,4 @@ const css = readFileSync(join(process.cwd(), "app", "globals.css"), "utf8");
 describe("theme overlay CSS", () => {
   it("themes the project capsule", () => expect(css).toContain(".game-cap::after"));
   it("themes the featured logo", () => expect(css).toContain(".fav-av::after"));
-  it("themes the artwork frames", () => expect(css).toContain(".art-frame .inner::after"));
 });

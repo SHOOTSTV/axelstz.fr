@@ -3,7 +3,6 @@ import type { PortfolioData, GitHubStats } from "@/lib/types";
 import { ModeProvider, useMode } from "@/components/ModeProvider";
 import { TopBar } from "@/components/steam/TopBar";
 import { ProfileHeader } from "@/components/steam/ProfileHeader";
-import { ArtworkShowcase } from "@/components/steam/ArtworkShowcase";
 import { Sidebar } from "@/components/steam/Sidebar";
 import { FeaturedStack } from "@/components/steam/FeaturedStack";
 import { BigStats } from "@/components/steam/BigStats";
@@ -15,7 +14,6 @@ import { Footer } from "@/components/steam/Footer";
 import { Starfield } from "@/components/steam/Starfield";
 import { RecruiterToggle } from "@/components/recruiter/RecruiterToggle";
 import { ResumeView } from "@/components/recruiter/ResumeView";
-import { TweaksPanel } from "@/components/tweaks/TweaksPanel";
 
 function Inner({ data }: { data: PortfolioData }) {
   const { recruiter } = useMode();
@@ -52,7 +50,6 @@ function Inner({ data }: { data: PortfolioData }) {
           <div className="content">
             <div className="profile-body">
               <div className="col-main">
-                <ArtworkShowcase data={data} />
                 <FeaturedStack data={data} />
                 <BigStats data={data} />
                 <AboutMe data={data} />
@@ -66,7 +63,6 @@ function Inner({ data }: { data: PortfolioData }) {
         </main>
         <Footer data={data} />
       </div>
-      <TweaksPanel />
     </>
   );
 }
