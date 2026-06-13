@@ -495,6 +495,25 @@ body.motion-off .fav-stats > * { opacity: 1; transform: none; animation: none; }
 .recruiter-toggle { background: var(--btn-grad); color: #1e2d0a; border: none; padding: 7px 14px; border-radius: 3px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font); }
 .recruiter-toggle:hover { background: var(--btn-grad-hover); color: #16210a; }
 
+/* Steam-style achievement-unlock toasts (scroll milestones) */
+.ach-host {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  display: flex; flex-direction: column; gap: 10px; pointer-events: none;
+}
+.ach-toast {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  background: var(--header-2); border: 1px solid #000; border-left: 3px solid var(--link);
+  box-shadow: 0 8px 30px rgba(0,0,0,.6); color: #c7d5e0;
+  transform: translateY(140%); opacity: 0;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .4s;
+}
+.ach-toast.in { transform: none; opacity: 1; }
+.ach-toast .ach-txt { display: flex; flex-direction: column; line-height: 1.3; }
+.ach-toast .at { font-family: var(--font-mono); color: var(--link); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.ach-toast .an { color: #e9edf0; font-size: 13px; font-weight: 700; }
+body.motion-off .ach-toast { transition: none; }
+@media (prefers-reduced-motion: reduce) { .ach-toast { transition: none; } }
+
 /* cross-fade the Steam<->resume swap (View Transitions API) */
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .42s; }
 @media (prefers-reduced-motion: reduce) {

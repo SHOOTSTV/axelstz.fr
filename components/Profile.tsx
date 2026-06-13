@@ -14,6 +14,13 @@ import { Footer } from "@/components/steam/Footer";
 import { Starfield } from "@/components/steam/Starfield";
 import { RecruiterToggle } from "@/components/recruiter/RecruiterToggle";
 import { ResumeView } from "@/components/recruiter/ResumeView";
+import { AchievementToast, type Milestone } from "@/components/primitives/AchievementToast";
+
+const MILESTONES: Milestone[] = [
+  { id: "projects", title: "Flagship Project", icon: "rocket" },
+  { id: "activity", title: "Recent Activity", icon: "zap" },
+  { id: "guestbook", title: "Guestbook", icon: "comment" },
+];
 
 function Inner({ data }: { data: PortfolioData }) {
   const { recruiter } = useMode();
@@ -63,6 +70,7 @@ function Inner({ data }: { data: PortfolioData }) {
         </main>
         <Footer data={data} />
       </div>
+      <AchievementToast milestones={MILESTONES} />
     </>
   );
 }
