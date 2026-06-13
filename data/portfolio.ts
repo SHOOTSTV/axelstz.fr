@@ -7,22 +7,22 @@ export const portfolio: PortfolioData = {
     name: "Axel.S",
     role: "Junior Web Developer",
     url: "axelstz.fr/profile",
-    level: 19, // _TODO_OWNER: your real age
+    level: 26, // _TODO_OWNER: your real age
     online: true,
     xp: {
       title: "Junior Web Developer",
-      sub: "Level 19 · building on the web",
+      sub: "Level 26 · building on the web",
     },
   },
   nav: ["PROJECTS", "COMMUNITY", "PROFILE", "ACTIVITY", "SUPPORT"],
   counts: [
-    { label: "Projects", n: 1 }, // _TODO_OWNER: keep equal to projects.length
-    { label: "Screenshots", n: 3 }, // _TODO_OWNER: real screenshot count
+    { label: "Projects", n: 2 }, // _TODO_OWNER: keep equal to projects.length
+    { label: "Screenshots", n: 4 }, // _TODO_OWNER: real screenshot count
     { label: "Repositories", n: null }, // filled live (Task 29)
     { label: "Reviews", n: 2 }, // _TODO_OWNER: real testimonial count
   ],
   badges: [
-    { label: "1", color: "#5a4b8a" },
+    { label: "2", color: "#5a4b8a" },
     { label: "'26", color: "#7a2f5a" },
     { label: "", color: "#6a3a3a", icon: "rocket" },
   ],
@@ -44,19 +44,10 @@ export const portfolio: PortfolioData = {
       name: "LinkedIn",
       sub: "Axel.S",
       icon: "linkedin",
-      href: "https://linkedin.com/",
+      href: "https://www.linkedin.com/in/axelstankiewicz/",
       level: 19,
       color: "#2a5a8a",
       online: true,
-    },
-    {
-      name: "Discord",
-      sub: "shoots",
-      icon: "discord",
-      href: "#",
-      level: 19,
-      color: "#5a3a8a",
-      online: false,
     },
     {
       name: "Email",
@@ -76,7 +67,7 @@ export const portfolio: PortfolioData = {
     { icon: "server" },
   ],
   bigStats: [
-    { key: "projects", value: 1, label: "Projects shipped" }, // _TODO_OWNER: match projects.length
+    { key: "projects", value: 2, label: "Projects shipped" }, // _TODO_OWNER: match projects.length
     { key: "repos", value: 0, label: "Repositories" }, // live
     { key: "commits", value: 0, label: "Total commits" }, // live
   ],
@@ -113,6 +104,14 @@ export const portfolio: PortfolioData = {
       last: "live · macrotrackr.app",
       milestones: { done: 1, total: 1 },
       achievement: { icon: "trophy", name: "Shipped to production", xp: "Live SaaS" },
+    },
+    {
+      name: "FloatVision",
+      image: "/images/act2.png",
+      meta: "CSFloat market intelligence",
+      last: "private beta · Chrome MV3",
+      milestones: { done: 3, total: 4 }, // overlays + scanner + P&L done; Steam automation on roadmap
+      achievement: { icon: "zap", name: "Feature-complete beta", xp: "Private beta" },
     },
   ],
   testimonials: [

@@ -31,16 +31,7 @@ export function mergeGitHub(data: PortfolioData, gh: GitHubStats | null): Portfo
   const counts = data.counts.map((c) =>
     c.label === "Repositories" ? { ...c, n: gh.repos } : c);
 
-  // Prepend up to 2 live GitHub activity rows ahead of the curated projects.
-  const liveProjects = gh.activity.slice(0, 2).map((a) => ({
-    name: a.repo,
-    image: "/images/act-gh.png",
-    meta: `${a.type} activity`,
-    last: new Date(a.when).toLocaleDateString(),
-  }));
-  const projects = [...liveProjects, ...data.projects];
-
   const featuredStack = stackFromLanguages(gh.languages) ?? data.featuredStack;
 
-  return { ...data, bigStats, counts, projects, featuredStack };
+  return { ...data, bigStats, counts, featuredStack };
 }

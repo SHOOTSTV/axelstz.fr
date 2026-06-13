@@ -19,9 +19,10 @@ describe("mergeGitHub", () => {
   it("leaves data unchanged when github is null", () => {
     expect(mergeGitHub(portfolio, null)).toEqual(portfolio);
   });
-  it("prepends github activity rows when present", () => {
+  it("does not inject github repos into the curated projects list", () => {
     const m = mergeGitHub(portfolio, gh);
-    expect(m.projects[0].name.toLowerCase()).toContain("taskforge");
+    expect(m.projects).toEqual(portfolio.projects);
+    expect(m.projects.some((p) => p.name.toLowerCase().includes("taskforge"))).toBe(false);
   });
   it("derives the featured stack from top languages", () => {
     const m = mergeGitHub(portfolio, gh);
