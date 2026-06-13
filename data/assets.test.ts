@@ -6,7 +6,6 @@ import { portfolio } from "@/data/portfolio";
 function referencedImages(): string[] {
   const out: string[] = [];
   const push = (s?: string) => { if (s && s.startsWith("/")) out.push(s); };
-  portfolio.communities.forEach((c) => push(c.image));
   push(portfolio.featuredProject.image);
   portfolio.projects.forEach((p) => push(p.image));
   portfolio.testimonials.forEach((t) => push(t.image));

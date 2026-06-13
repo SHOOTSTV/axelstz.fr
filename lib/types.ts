@@ -7,7 +7,6 @@ export interface Profile {
 }
 export interface CountRow { label: string; n: number | null; }
 export interface Badge { label: string; color: string; icon?: IconName; }
-export interface Community { name: string; members: string; image: string; }
 export interface Social { name: string; sub: string; icon: IconName; href: string; level: number; color: string; online: boolean; }
 export interface StackItem { icon: IconName; hot?: boolean; }
 export interface BigStat { key: "projects" | "repos" | "commits" | "stars" | string; value: number; label: string; }
@@ -20,14 +19,14 @@ export interface Project {
   achievement?: { icon: IconName; name: string; xp: string };
 }
 export interface Testimonial { name: string; date: string; text: string; image: string; special?: boolean; }
-export interface FooterData { cols: { h: string; links: string[] }[]; social: IconName[]; }
+export interface FooterLink { label: string; href: string; }
+export interface FooterData { cols: { h: string; links: FooterLink[] }[]; social: { icon: IconName; href: string }[]; }
 
 export interface PortfolioData {
   profile: Profile;
   nav: string[];
   counts: CountRow[];
   badges: Badge[];
-  communities: Community[];
   social: Social[];
   featuredStack: StackItem[];
   bigStats: BigStat[];

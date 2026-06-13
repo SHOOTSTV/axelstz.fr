@@ -1,6 +1,5 @@
 import type { PortfolioData } from "@/lib/types";
 import { Icon } from "@/components/primitives/Icon";
-import { Frame } from "@/components/primitives/Frame";
 import { Reveal } from "@/components/primitives/Reveal";
 import { fmt } from "@/components/primitives/StatNum";
 
@@ -30,19 +29,6 @@ export function Sidebar({ data }: { data: PortfolioData }) {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="side-block">
-        <div className="side-h">Communities <span className="n">{data.communities.length}</span></div>
-        {data.communities.map((g) => (
-          <div className="grp-row" key={g.name}>
-            <span className="grp-av"><Frame src={g.image} alt={g.name} placeholder="" /></span>
-            <span className="grp-info">
-              <div className="nm">{g.name}</div>
-              <div className="mm">{g.members}</div>
-            </span>
-          </div>
-        ))}
       </div>
 
       <div className="side-block">

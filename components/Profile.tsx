@@ -53,7 +53,7 @@ function Inner({ data }: { data: PortfolioData }) {
                 <FeaturedStack data={data} />
                 <BigStats data={data} />
                 <AboutMe data={data} />
-                <FeaturedProject data={data} />
+                <div id="projects"><FeaturedProject data={data} /></div>
                 <RecentActivity data={data} />
                 <Testimonials data={data} />
               </div>

@@ -4,7 +4,7 @@ import { Icon } from "@/components/primitives/Icon";
 export function Footer({ data }: { data: PortfolioData }) {
   const brand = data.profile.brand;
   return (
-    <footer className="footer">
+    <footer className="footer" id="contact">
       <div className="footer-inner">
         <div className="footer-brand">
           <span className="logo">{brand[0]}</span>
@@ -18,14 +18,17 @@ export function Footer({ data }: { data: PortfolioData }) {
             </div>
             <div className="footer-social">
               {data.footer.social.map((s) => (
-                <a href="#" key={s} aria-label={s}><Icon name={s} size={20} /></a>
+                <a href={s.href} key={s.icon} aria-label={s.icon} target="_blank" rel="noreferrer"><Icon name={s.icon} size={20} /></a>
               ))}
             </div>
           </div>
           {data.footer.cols.map((col) => (
             <div className="footer-col" key={col.h}>
               <h4>{col.h}</h4>
-              {col.links.map((l) => <a href="#" key={l}>{l}</a>)}
+              {col.links.map((l) => {
+                const ext = l.href.startsWith("http");
+                return <a href={l.href} key={l.label} {...(ext ? { target: "_blank", rel: "noreferrer" } : {})}>{l.label}</a>;
+              })}
             </div>
           ))}
         </div>

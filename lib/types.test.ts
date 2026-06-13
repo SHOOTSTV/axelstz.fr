@@ -6,7 +6,6 @@ const sample: PortfolioData = {
   nav: ["PROJECTS"],
   counts: [{ label: "Projects", n: 12 }],
   badges: [{ label: "7", color: "#5a4b8a" }],
-  communities: [{ name: "Indie Hackers", members: "22k", image: "/images/grp1.png" }],
   social: [{ name: "GitHub", sub: "@shoots", icon: "github", href: "https://github.com/", level: 19, color: "#3a3a3a", online: true }],
   featuredStack: [{ icon: "code" }],
   bigStats: [{ key: "projects", value: 12, label: "Projects shipped" }],
@@ -14,7 +13,7 @@ const sample: PortfolioData = {
   featuredProject: { name: "Nebula", type: "SaaS", image: "/images/favg.png", desc: "x", stats: [{ value: "1k", key: "Users", cls: "members" }], live: "#", code: "#" },
   projects: [{ name: "TabFlow", image: "/images/act2.png", meta: "40 hrs total", last: "June 1", milestones: { done: 41, total: 57 } }],
   testimonials: [{ name: "maya", date: "2024", text: "+rep", image: "/images/cm1.png" }],
-  footer: { cols: [{ h: "Work", links: ["Featured"] }], social: ["github"] },
+  footer: { cols: [{ h: "Work", links: [{ label: "Featured", href: "#projects" }] }], social: [{ icon: "github", href: "https://github.com/" }] },
 };
 
 describe("PortfolioData", () => {

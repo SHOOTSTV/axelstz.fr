@@ -5,10 +5,14 @@ import { Testimonials } from "@/components/steam/Testimonials";
 import { portfolio } from "@/data/portfolio";
 
 describe("Testimonials", () => {
-  it("renders existing testimonials", () => {
-    render(<Testimonials data={portfolio} />);
+  it("renders any seeded testimonials", () => {
+    const seeded = {
+      ...portfolio,
+      testimonials: [{ name: "guest", date: "today", text: "left a note", image: "" }],
+    };
+    render(<Testimonials data={seeded} />);
     expect(screen.getByText("Testimonials")).toBeTruthy();
-    expect(screen.getByText(portfolio.testimonials[0].text)).toBeTruthy();
+    expect(screen.getByText("left a note")).toBeTruthy();
   });
   it("lets a visitor post a comment (client-only)", async () => {
     render(<Testimonials data={portfolio} />);

@@ -14,21 +14,17 @@ export const portfolio: PortfolioData = {
       sub: "Level 26 · building on the web",
     },
   },
-  nav: ["PROJECTS", "COMMUNITY", "PROFILE", "ACTIVITY", "SUPPORT"],
+  nav: ["PROFILE", "PROJECTS", "ACTIVITY", "CONTACT"],
   counts: [
     { label: "Projects", n: 2 }, // _TODO_OWNER: keep equal to projects.length
     { label: "Screenshots", n: 4 }, // _TODO_OWNER: real screenshot count
     { label: "Repositories", n: null }, // filled live (Task 29)
-    { label: "Reviews", n: 2 }, // _TODO_OWNER: real testimonial count
+    { label: "Reviews", n: null }, // filled by guestbook entries
   ],
   badges: [
     { label: "2", color: "#5a4b8a" },
     { label: "'26", color: "#7a2f5a" },
     { label: "", color: "#6a3a3a", icon: "rocket" },
-  ],
-  communities: [
-    { name: "Indie Hackers", members: "22,475 members", image: "" }, // _TODO_OWNER: drop /public/images/grp1.png then set path
-    { name: "React", members: "411,137 members", image: "" }, // _TODO_OWNER: grp2.png
   ],
   social: [
     {
@@ -114,26 +110,23 @@ export const portfolio: PortfolioData = {
       achievement: { icon: "zap", name: "Feature-complete beta", xp: "Private beta" },
     },
   ],
-  testimonials: [
-    {
-      name: "maya.okafor",
-      date: "Jul 20, 2024",
-      text: "+rep shipped our MVP in 5 weeks, scaled great",
-      image: "",
-    }, // _TODO_OWNER: cm avatar 128×128
-    {
-      name: "liam.petrov",
-      date: "Feb 21, 2024",
-      text: "+rep clean comms, zero drama",
-      image: "",
-    },
-  ],
+  testimonials: [], // guestbook: real visitor entries replace the old fabricated quotes
   footer: {
     cols: [
-      { h: "Portfolio", links: ["About", "Projects", "Activity", "Showcase"] },
-      { h: "Work", links: ["Featured", "Open source", "Reviews"] },
-      { h: "Connect", links: ["Email", "LinkedIn", "GitHub", "Discord"] },
+      { h: "Sections", links: [
+        { label: "Profile", href: "#profile" },
+        { label: "Projects", href: "#projects" },
+        { label: "Activity", href: "#activity" },
+      ] },
+      { h: "Connect", links: [
+        { label: "Email", href: "mailto:hello@axelstz.fr" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/axelstankiewicz/" },
+        { label: "GitHub", href: "https://github.com/SHOOTSTV" },
+      ] },
     ],
-    social: ["youtube", "bluesky", "facebook", "xtwitter"],
+    social: [
+      { icon: "github", href: "https://github.com/SHOOTSTV" },
+      { icon: "linkedin", href: "https://www.linkedin.com/in/axelstankiewicz/" },
+    ],
   },
 };
