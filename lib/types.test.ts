@@ -12,7 +12,6 @@ const sample: PortfolioData = {
   about: { star: "Axel.S", specHead: "My stack :", specs: ["React 18 · Next.js 15"] },
   featuredProject: { name: "Nebula", type: "SaaS", image: "/images/favg.png", desc: "x", stats: [{ value: "1k", key: "Users", cls: "members" }], live: "#", code: "#" },
   projects: [{ name: "TabFlow", image: "/images/act2.png", meta: "40 hrs total", last: "June 1", milestones: { done: 41, total: 57 } }],
-  testimonials: [{ name: "maya", date: "2024", text: "+rep", image: "/images/cm1.png" }],
   footer: { cols: [{ h: "Work", links: [{ label: "Featured", href: "#projects" }] }], social: [{ icon: "github", href: "https://github.com/" }] },
 };
 

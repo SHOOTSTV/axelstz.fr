@@ -16,9 +16,6 @@ describe("portfolio data", () => {
   it("has at least one project", () => {
     expect(portfolio.projects.length).toBeGreaterThan(0);
   });
-  it("ships no fabricated testimonials (guestbook starts empty)", () => {
-    expect(portfolio.testimonials).toEqual([]);
-  });
   it("has no leftover fake Steam contacts", () => {
     const names = portfolio.social.map(s => s.name.toLowerCase());
     expect(names).not.toContain("kormac");

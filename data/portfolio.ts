@@ -14,7 +14,7 @@ export const portfolio: PortfolioData = {
       sub: "Level 26 · building on the web",
     },
   },
-  nav: ["PROFILE", "PROJECTS", "ACTIVITY", "CONTACT"],
+  nav: ["PROFILE", "PROJECTS", "ACTIVITY", "GUESTBOOK", "CONTACT"],
   counts: [
     { label: "Projects", n: 2 }, // _TODO_OWNER: keep equal to projects.length
     { label: "Screenshots", n: 4 }, // _TODO_OWNER: real screenshot count
@@ -110,7 +110,6 @@ export const portfolio: PortfolioData = {
       achievement: { icon: "zap", name: "Feature-complete beta", xp: "Private beta" },
     },
   ],
-  testimonials: [], // guestbook: real visitor entries replace the old fabricated quotes
   footer: {
     cols: [
       { h: "Sections", links: [

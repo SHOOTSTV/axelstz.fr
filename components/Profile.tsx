@@ -9,7 +9,7 @@ import { BigStats } from "@/components/steam/BigStats";
 import { AboutMe } from "@/components/steam/AboutMe";
 import { FeaturedProject } from "@/components/steam/FeaturedProject";
 import { RecentActivity } from "@/components/steam/RecentActivity";
-import { Testimonials } from "@/components/steam/Testimonials";
+import { Guestbook } from "@/components/steam/Guestbook";
 import { Footer } from "@/components/steam/Footer";
 import { Starfield } from "@/components/steam/Starfield";
 import { RecruiterToggle } from "@/components/recruiter/RecruiterToggle";
@@ -55,7 +55,7 @@ function Inner({ data }: { data: PortfolioData }) {
                 <AboutMe data={data} />
                 <div id="projects"><FeaturedProject data={data} /></div>
                 <RecentActivity data={data} />
-                <Testimonials data={data} />
+                <Guestbook />
               </div>
               <div className="col-side"><Sidebar data={data} /></div>
             </div>

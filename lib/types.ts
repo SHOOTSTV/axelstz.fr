@@ -18,7 +18,6 @@ export interface Project {
   milestones?: { done: number; total: number };
   achievement?: { icon: IconName; name: string; xp: string };
 }
-export interface Testimonial { name: string; date: string; text: string; image: string; special?: boolean; }
 export interface FooterLink { label: string; href: string; }
 export interface FooterData { cols: { h: string; links: FooterLink[] }[]; social: { icon: IconName; href: string }[]; }
 
@@ -33,7 +32,6 @@ export interface PortfolioData {
   about: About;
   featuredProject: FeaturedProject;
   projects: Project[];
-  testimonials: Testimonial[];
   footer: FooterData;
 }
 

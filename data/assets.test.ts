@@ -8,7 +8,6 @@ function referencedImages(): string[] {
   const push = (s?: string) => { if (s && s.startsWith("/")) out.push(s); };
   push(portfolio.featuredProject.image);
   portfolio.projects.forEach((p) => push(p.image));
-  portfolio.testimonials.forEach((t) => push(t.image));
   return out;
 }
 
