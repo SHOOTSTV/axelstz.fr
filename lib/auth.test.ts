@@ -10,6 +10,9 @@ describe("checkBasicAuth", () => {
   it("rejects wrong password", () => {
     expect(checkBasicAuth(header("admin", "nope"), "admin", "secret")).toBe(false);
   });
+  it("rejects wrong username", () => {
+    expect(checkBasicAuth(header("root", "secret"), "admin", "secret")).toBe(false);
+  });
   it("rejects missing or malformed header", () => {
     expect(checkBasicAuth(null, "admin", "secret")).toBe(false);
     expect(checkBasicAuth("Bearer xyz", "admin", "secret")).toBe(false);
