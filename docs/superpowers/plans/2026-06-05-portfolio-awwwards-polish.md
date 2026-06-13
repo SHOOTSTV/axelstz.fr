@@ -19,7 +19,7 @@ Since this plan was written, a scope-trim pass removed three subsystems it assum
 | Task | Status | Note |
 |------|--------|------|
 | T1 — Frame placeholder | ✅ **valid (reframed)** | ArtworkShowcase hero is gone, but empty `Frame`s remain (avatar, community group images, testimonial/contact avatars). Placeholder work still applies to those slots — just not the "first thing a juror sees" hero framing. |
-| T2 — hide "0" stats | ⬜ **valid, not done** | `BigStats.tsx` still maps every tile incl. `repos:0` / `commits:0`. |
+| T2 — hide "0" stats | ✅ **done (2026-06-13)** | `BigStats.tsx` filters `value > 0` and returns null if all-zero; covered by `BigStats.test.tsx`. |
 | T3 — de-fabricate content | 🟡 **partial** | `featuredProject.stats` already feature-truthful ✅. **Remaining:** `testimonials` still use fabricated `+rep` quotes; `communities` still show invented `22,475` / `411,137` member counts. |
 | T4 — nav + footer links | ⬜ **valid, not done** | nav `["PROJECTS","COMMUNITY","PROFILE","ACTIVITY","SUPPORT"]` → `#projects` and `#support` are dead (real IDs: `#top #profile #activity #community`). Footer + social still all `href="#"`; drop the now-dead "Showcase" footer link. |
 | T5 — remove dead chrome | 🟡 **mostly valid** | `.art-more +N` bullet already resolved (removed with ArtworkShowcase). **Remaining:** "Trade Offer" (ProfileHeader + AboutMe), "Edit profile", "Subscribe to thread" still present. |
