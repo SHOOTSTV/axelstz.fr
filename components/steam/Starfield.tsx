@@ -10,7 +10,7 @@ export function Starfield() {
     if (!ctx) return; // jsdom / unsupported
 
     let w = 0, h = 0, dpr = 1, raf = 0, run = true;
-    const N = 150;
+    const N = window.innerWidth < 720 ? 90 : 150;
     const stars: { a: number; r: number; sp: number; br: number; ln: number }[] = [];
 
     function resize() {
@@ -34,6 +34,7 @@ export function Starfield() {
     }
     function draw() {
       if (!run || !ctx) return;
+      if (document.hidden) { raf = requestAnimationFrame(draw); return; } // keep loop, skip paint
       const cx = w * 0.5, cy = h * 0.16;
       ctx.clearRect(0, 0, w, h);
       ctx.lineCap = "round";
@@ -51,7 +52,21 @@ export function Starfield() {
     resize(); seed(); draw();
     const onR = () => { resize(); seed(); };
     window.addEventListener("resize", onR);
-    return () => { run = false; cancelAnimationFrame(raf); window.removeEventListener("resize", onR); };
+
+    // Pause the loop entirely once the canvas has scrolled out of view; resume on return.
+    const io = new IntersectionObserver((entries) => {
+      const vis = entries[0]?.isIntersecting ?? true;
+      if (vis && !run) { run = true; draw(); }
+      else if (!vis) { run = false; cancelAnimationFrame(raf); }
+    });
+    io.observe(cv);
+
+    return () => {
+      run = false;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onR);
+      io.disconnect();
+    };
   }, []);
 
   return <canvas id="stars" ref={ref} />;
