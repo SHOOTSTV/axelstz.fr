@@ -23,7 +23,7 @@ The homepage stays statically prerendered. The guestbook is the only dynamic sur
 - **One public route handler** `app/api/guestbook/route.ts` — `GET` approved notes, `POST` a pending note.
 - **One admin route** `app/guestbook/admin/page.tsx` + **one admin route handler** `app/api/guestbook/admin/route.ts` — list pending, approve, delete. Protected by Basic Auth.
 - **One DB module** `lib/guestbook.ts` — the *only* file that imports the Postgres driver. Everything else depends on this interface and mocks it in tests.
-- **One middleware** `middleware.ts` — Basic Auth gate over `/guestbook/admin` and `/api/guestbook/admin`.
+- **One proxy** `proxy.ts` — Basic Auth gate over `/guestbook/admin` and `/api/guestbook/admin`. (Next 16 renamed `middleware.ts` → `proxy.ts`; same functionality.)
 
 ### Data model
 
@@ -79,7 +79,7 @@ Deterministic, no network, no upload: hash `name` → pick a hue/background from
 
 ## Admin + auth
 
-- `middleware.ts`: matches `/guestbook/admin` and `/api/guestbook/admin`. Reads `Authorization: Basic …`; compares against `GUESTBOOK_ADMIN_USER` / `GUESTBOOK_ADMIN_PASS`. On mismatch → `401` with `WWW-Authenticate: Basic`. The compare logic is a pure exported function `checkBasicAuth(header, user, pass)` so it is unit-testable without the edge runtime.
+- `proxy.ts` (root): `config.matcher` covers `/guestbook/admin` and `/api/guestbook/admin/:path*`. Reads `Authorization: Basic …`; compares against `GUESTBOOK_ADMIN_USER` / `GUESTBOOK_ADMIN_PASS`. On mismatch → `401` with `WWW-Authenticate: Basic`. The compare logic is a pure exported function `checkBasicAuth(header, user, pass)` (in `lib/auth.ts`) so it is unit-testable without the edge runtime.
 - `app/guestbook/admin/page.tsx` (server component, `dynamic = 'force-dynamic'`): `listPending()` → table of pending notes with **Approve** and **Delete** buttons (each a form posting to the admin route handler).
 - `app/api/guestbook/admin/route.ts`: **POST** `{ id, action: 'approve' | 'delete' }` → `approve(id)` or `remove(id)` → redirect/200. Re-reads behind the same middleware gate (defense in depth: the handler also runs under middleware).
 
@@ -120,7 +120,7 @@ Provisioning (owner action): create a Postgres database via the Vercel Storage t
 | `db/guestbook.sql` | **create** — schema migration |
 | `lib/guestbook.ts` | **create** — DB access module (only driver importer) |
 | `lib/auth.ts` | **create** — `checkBasicAuth` pure helper |
-| `middleware.ts` | **create** — Basic-auth gate for admin paths |
+| `proxy.ts` | **create** — Basic-auth gate for admin paths (Next 16 middleware) |
 | `app/api/guestbook/route.ts` | **create** — public GET/POST |
 | `app/api/guestbook/admin/route.ts` | **create** — approve/delete |
 | `app/guestbook/admin/page.tsx` | **create** — pending list UI |
@@ -136,5 +136,5 @@ Provisioning (owner action): create a Postgres database via the Vercel Storage t
 | `package.json` | **modify** — add `@neondatabase/serverless`, `zod` (if not present) |
 
 ## Open items to confirm at plan time
-- `zod` is **not** currently a dependency (verified 2026-06-13) despite the stack copy — add it alongside `@neondatabase/serverless`. No `middleware.ts` exists yet. Target Next `16.2.7`, React `19.2.4`.
-- Exact Next 16 middleware + route-handler API surface (consult `node_modules/next/dist/docs/` per AGENTS.md before coding).
+- `zod` is **not** currently a dependency (verified 2026-06-13) despite the stack copy — add it alongside `@neondatabase/serverless`. No `proxy.ts` exists yet. Target Next `16.2.7`, React `19.2.4`.
+- **Resolved (2026-06-13, from bundled docs):** Next 16 route handlers use Web `Request`/`Response`, are uncached by default (set `Cache-Control` manually); middleware is now `proxy.ts` at project root — `export function proxy(req: NextRequest)` + `export const config = { matcher: [...] }`.
