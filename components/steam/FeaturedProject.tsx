@@ -1,5 +1,6 @@
 import type { PortfolioData } from "@/lib/types";
 import { Frame } from "@/components/primitives/Frame";
+import { MagneticButton } from "@/components/primitives/MagneticButton";
 
 export function FeaturedProject({ data }: { data: PortfolioData }) {
   const g = data.featuredProject;
@@ -20,8 +21,8 @@ export function FeaturedProject({ data }: { data: PortfolioData }) {
             ))}
           </div>
           <div className="fav-actions">
-            <a className="btn-live" href={g.live} target="_blank" rel="noreferrer">▶ Live</a>
-            <a className="btn-code" href={g.code} target="_blank" rel="noreferrer">&lt;/&gt; Code</a>
+            <MagneticButton className="btn-live" href={g.live}>▶ Live</MagneticButton>
+            <MagneticButton className="btn-code" href={g.code}>&lt;/&gt; Code</MagneticButton>
           </div>
         </div>
       </div>
