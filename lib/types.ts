@@ -3,6 +3,7 @@ export type IconName = string;
 export interface Profile {
   brand: string; name: string; role: string; url: string;
   level: number; online: boolean;
+  statement: string;
   xp: { title: string; sub: string };
 }
 export interface CountRow { label: string; n: number | null; }

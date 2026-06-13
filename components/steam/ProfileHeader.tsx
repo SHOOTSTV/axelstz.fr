@@ -42,6 +42,7 @@ export function ProfileHeader({ data }: { data: PortfolioData }) {
             </div>
           </div>
         </div>
+        <p className="hero-statement">{p.statement}</p>
       </div>
     </div>
   );

@@ -52,6 +52,7 @@
 
   --font: var(--font-asap), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-display: var(--font-jetbrains), ui-monospace, monospace;
 
   --accent: #66c0f4;
 }
@@ -189,10 +190,19 @@ a:hover { color: var(--bright); }
 
 /* section label used across left column */
 .sec-label {
-  font-size: 15px; color: var(--muted); font-weight: 400; margin: 30px 0 14px;
+  font-size: 15px; color: #c7d5e0; font-weight: 600; margin: 30px 0 14px;
   letter-spacing: .01em;
 }
-.sec-label .n { color: var(--muted2); }
+.sec-label .n { color: var(--muted2); font-weight: 400; }
+
+/* display-scale positioning statement — the page's one type peak */
+.hero-statement {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 92px);
+  line-height: 0.98; letter-spacing: -0.02em; font-weight: 700;
+  color: var(--bright);
+  margin: 26px 0 4px; max-width: 14ch;
+}
 
 /* reveal */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import type { PortfolioData } from "@/lib/types";
 
 const sample: PortfolioData = {
-  profile: { brand: "SHOOTS", name: "Axel.S", role: "Junior Web Developer", url: "axelstz.fr/profile", level: 19, online: true, xp: { title: "Junior Web Developer", sub: "Level 19" } },
+  profile: { brand: "SHOOTS", name: "Axel.S", role: "Junior Web Developer", url: "axelstz.fr/profile", level: 19, online: true, statement: "I build for the web.", xp: { title: "Junior Web Developer", sub: "Level 19" } },
   nav: ["PROJECTS"],
   counts: [{ label: "Projects", n: 12 }],
   badges: [{ label: "7", color: "#5a4b8a" }],

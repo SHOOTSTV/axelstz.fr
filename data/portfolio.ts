@@ -9,6 +9,7 @@ export const portfolio: PortfolioData = {
     url: "axelstz.fr/profile",
     level: 26, // _TODO_OWNER: your real age
     online: true,
+    statement: "I build for the web.", // _TODO_OWNER: your one-line positioning statement
     xp: {
       title: "Junior Web Developer",
       sub: "Level 26 · building on the web",

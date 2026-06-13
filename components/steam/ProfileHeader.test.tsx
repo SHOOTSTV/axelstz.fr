@@ -9,6 +9,7 @@ describe("ProfileHeader", () => {
     expect(screen.getByText("Axel.S")).toBeTruthy();
     expect(screen.getByText(String(portfolio.profile.level))).toBeTruthy();
     expect(screen.getByText(portfolio.profile.xp.title)).toBeTruthy();
+    expect(screen.getByText(portfolio.profile.statement)).toBeTruthy();
   });
 
   it("shows a real contact CTA, not fake Edit profile / Trade Offer", () => {
