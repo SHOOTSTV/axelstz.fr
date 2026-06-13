@@ -22,12 +22,16 @@ Since this plan was written, a scope-trim pass removed three subsystems it assum
 | T2 — hide "0" stats | ✅ **done (2026-06-13)** | `BigStats.tsx` filters `value > 0` and returns null if all-zero; covered by `BigStats.test.tsx`. |
 | T3 — de-fabricate content | 🟡 **partial → near-done (2026-06-13)** | `featuredProject.stats` feature-truthful ✅. Communities section **removed** ✅. Fabricated `+rep` testimonials **emptied** ✅ — real entries now come from the **guestbook feature (next, separate task)**. |
 | T4 — nav + footer links | ✅ **done (2026-06-13)** | nav = `["PROFILE","PROJECTS","ACTIVITY","CONTACT"]`, all targeting real IDs (`#projects` added on FeaturedProject, `#contact` added on Footer). Footer cols/social + `FooterLink {label,href}` type carry real hrefs (GitHub, LinkedIn, mailto); no `href="#"` remains. |
-| T5 — remove dead chrome | 🟡 **mostly valid** | `.art-more +N` bullet already resolved (removed with ArtworkShowcase). **Remaining:** "Trade Offer" (ProfileHeader + AboutMe), "Edit profile", "Subscribe to thread" still present. |
-| T6 / T7 / T8 | ⬜ **valid, not done** | Display headline, featured spotlight + MagneticButton, View-Transition recruiter swap. |
-| T9 — wordmark + scroll nav | 🟡 **rescoped** | SHOOTS wordmark was **deliberately removed** → that half is **obsolete; do not re-add**. Scroll-synced active nav (replace hardcoded `i === 2`) still valid. |
-| T10 / T11 | ⬜ **valid, not done** | Starfield pause, level-up animation. |
+| T5 — remove dead chrome | ✅ **done (2026-06-13)** | "Edit profile" removed; both "Trade Offer" (ProfileHeader + AboutMe) converted to a real `#contact` "Get in touch" link. "Subscribe to thread" was already gone via the Testimonials→Guestbook swap. |
+| T6 — display headline + hierarchy | ✅ **done (2026-06-13)** | `profile.statement` data field + `.hero-statement` display tier (`--font-display`); `.sec-label` lifted to `#c7d5e0`/600. |
+| T7 — featured spotlight | ✅ **done (2026-06-13)** | `MagneticButton` primitive wraps Live/Code CTAs; capsule hover-scale + staggered stat reveal, all motion-off-safe. |
+| T8 — animate recruiter swap | ✅ **done (2026-06-13)** | `ModeProvider.setRecruiter` wraps `startViewTransition` + `flushSync` with motion-off/reduced-motion/no-API fallback; `::view-transition-*` CSS. |
+| T9 — wordmark + scroll nav | ✅ **done (2026-06-13, rescoped)** | Wordmark half **obsolete (skipped, do not re-add)**. Scroll-synced active nav implemented via IntersectionObserver (center band, highest-index section wins to handle the `#profile` wrapper); hardcoded `i === 2` removed. |
+| T10 — Starfield perf | ✅ **done (2026-06-13)** | Skips paint when `document.hidden`, pauses loop off-viewport via IntersectionObserver, fewer stars (<720px). |
+| T11 — level-up animation | ✅ **done (2026-06-13)** | `StatNum` count-up in `.lvl-badge` + one-shot pulse timed to completion + `title` tooltip; motion-off/reduced-motion safe. |
 | T12 — artwork parallax | ❌ **obsolete** | ArtworkShowcase removed. Skip entirely. |
-| T13 / T14 | ⬜ **valid, not done** | Achievement toasts, custom cursor. |
+| T13 — achievement toasts | ✅ **done (2026-06-13)** | `AchievementToast` host fires once per milestone (#projects/#activity/#guestbook), slide-in + auto-dismiss, motion-off-safe. |
+| T14 — custom cursor | ✅ **done (2026-06-13)** | Additive `Cursor` accent ring (lerp follow, grows over interactive els); null on touch/reduced-motion/motion-off, native cursor preserved. |
 
 Files removed (ignore plan references to them): `components/steam/ArtworkShowcase.tsx`, `components/tweaks/TweaksPanel.tsx`, the `.brand` wordmark in `TopBar.tsx`, the `Tweaks` state in `ModeProvider.tsx`.
 
