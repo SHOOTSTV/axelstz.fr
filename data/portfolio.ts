@@ -80,7 +80,7 @@ export const portfolio: PortfolioData = {
   featuredProject: {
     name: "MacroTrackr",
     type: "AI nutrition tracker",
-    image: "/images/favg.png",
+    image: "/images/macrotrackr.png",
     desc: "A nutrition tracker that logs for you. Point your camera or describe a meal in plain English — the AI handles the rest. Daily dashboards, goal tracking and history analytics. No searching, no friction.",
     // _TODO_OWNER: feature-truthful for now — swap for real metrics (DAU, uptime, p95) once you have them.
     stats: [
