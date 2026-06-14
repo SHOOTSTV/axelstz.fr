@@ -9,7 +9,6 @@ export const portfolio: PortfolioData = {
     url: "axelstz.fr/profile",
     level: 26, // _TODO_OWNER: your real age
     online: true,
-    statement: "I build for the web.", // _TODO_OWNER: your one-line positioning statement
     xp: {
       title: "Junior Web Developer",
       sub: "Level 26 · building on the web",
@@ -17,13 +16,13 @@ export const portfolio: PortfolioData = {
   },
   nav: ["PROFILE", "PROJECTS", "ACTIVITY", "GUESTBOOK", "CONTACT"],
   counts: [
-    { label: "Projects", n: 2 }, // _TODO_OWNER: keep equal to projects.length
+    { label: "Projects", n: 3 }, // _TODO_OWNER: keep equal to projects.length
     { label: "Screenshots", n: 4 }, // _TODO_OWNER: real screenshot count
     { label: "Repositories", n: null }, // filled live (Task 29)
     { label: "Reviews", n: null }, // filled by guestbook entries
   ],
   badges: [
-    { label: "2", color: "#5a4b8a" },
+    { label: "3", color: "#5a4b8a" },
     { label: "'26", color: "#7a2f5a" },
     { label: "", color: "#6a3a3a", icon: "rocket" },
   ],
@@ -64,7 +63,7 @@ export const portfolio: PortfolioData = {
     { icon: "server" },
   ],
   bigStats: [
-    { key: "projects", value: 2, label: "Projects shipped" }, // _TODO_OWNER: match projects.length
+    { key: "projects", value: 3, label: "Projects shipped" }, // _TODO_OWNER: match projects.length
     { key: "repos", value: 0, label: "Repositories" }, // live
     { key: "commits", value: 0, label: "Total commits" }, // live
   ],
@@ -96,19 +95,37 @@ export const portfolio: PortfolioData = {
   projects: [
     {
       name: "MacroTrackr",
-      image: "/images/act1.png",
+      image: "/images/macrotrackr.png",
       meta: "AI nutrition tracker",
       last: "live · macrotrackr.app",
+      code: "https://github.com/SHOOTSTV/macrotrackr",
+      live: "https://macrotrackr.app/",
+      commits: 497, // private repo: static fallback, overridden live when GITHUB_TOKEN is set
+      lastUpdate: "Jun 13", // private repo: static fallback, overridden live
+      ribbon: true, // flagship
       milestones: { done: 1, total: 1 },
       achievement: { icon: "trophy", name: "Shipped to production", xp: "Live SaaS" },
     },
     {
       name: "FloatVision",
-      image: "/images/act2.png",
+      image: "/images/floatvision.png",
       meta: "CSFloat market intelligence",
       last: "private beta · Chrome MV3",
+      code: "https://github.com/SHOOTSTV/floatvision",
+      commits: 96, // private repo: static fallback, overridden live when GITHUB_TOKEN is set
+      lastUpdate: "Jun 13", // private repo: static fallback, overridden live
       milestones: { done: 3, total: 4 }, // overlays + scanner + P&L done; Steam automation on roadmap
       achievement: { icon: "zap", name: "Feature-complete beta", xp: "Private beta" },
+    },
+    {
+      name: "axelstz.fr",
+      image: "/images/folio.png",
+      meta: "This portfolio",
+      last: "live · axelstz.fr",
+      code: "https://github.com/SHOOTSTV/axelstz.fr",
+      live: "https://axelstz.fr/",
+      milestones: { done: 1, total: 1 },
+      achievement: { icon: "rocket", name: "Self-hosted folio", xp: "Next.js 16" },
     },
   ],
   footer: {

@@ -1,11 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import type { PortfolioData } from "@/lib/types";
 
-export function TopBar({ data }: { data: PortfolioData }) {
+// `current` marks the active standalone page (e.g. "PROJECTS"). When set, the
+// scroll-spy is disabled and section links point back to the homepage anchors.
+export function TopBar({ data, current }: { data: PortfolioData; current?: string }) {
   const [active, setActive] = useState(`#${data.nav[0].toLowerCase()}`);
 
   useEffect(() => {
+    if (current) return; // standalone page: no on-page sections to spy on
     const ids = data.nav.map((l) => l.toLowerCase());
     const els = ids
       .map((id) => document.getElementById(id))
@@ -31,7 +35,11 @@ export function TopBar({ data }: { data: PortfolioData }) {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, [data.nav]);
+  }, [data.nav, current]);
+
+  const hrefFor = (l: string) =>
+    l === "PROJECTS" ? "/projects" : current ? `/#${l.toLowerCase()}` : `#${l.toLowerCase()}`;
+  const isActive = (l: string) => (current ? l === current : `#${l.toLowerCase()}` === active);
 
   return (
     <header className="topbar">
@@ -39,11 +47,11 @@ export function TopBar({ data }: { data: PortfolioData }) {
         <div className="top-main">
           <nav className="nav-main">
             {data.nav.map((l) => {
-              const href = `#${l.toLowerCase()}`;
-              return (
-                <a key={l} href={href} className={href === active ? "active" : ""}>
-                  {l}
-                </a>
+              const cls = isActive(l) ? "active" : "";
+              return l === "PROJECTS" ? (
+                <Link key={l} href="/projects" className={cls}>{l}</Link>
+              ) : (
+                <a key={l} href={hrefFor(l)} className={cls}>{l}</a>
               );
             })}
           </nav>

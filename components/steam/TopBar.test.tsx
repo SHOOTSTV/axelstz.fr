@@ -16,4 +16,16 @@ describe("TopBar", () => {
     // ACTIVITY used to be hardcoded active (i === 2)
     expect(screen.getByText("ACTIVITY").className).not.toContain("active");
   });
+
+  it("links PROJECTS to the /projects route", () => {
+    render(<TopBar data={portfolio} />);
+    expect(screen.getByText("PROJECTS").getAttribute("href")).toBe("/projects");
+  });
+
+  it("on a standalone page marks `current` active and points sections back home", () => {
+    render(<TopBar data={portfolio} current="PROJECTS" />);
+    expect(screen.getByText("PROJECTS").className).toContain("active");
+    expect(screen.getByText("PROFILE").className).not.toContain("active");
+    expect(screen.getByText("PROFILE").getAttribute("href")).toBe("/#profile");
+  });
 });

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { fetchGitHubStats } from "@/lib/github";
+import { fetchGitHubStats, fetchProjectStats } from "@/lib/github";
+import type { Project } from "@/lib/types";
 
 beforeEach(() => vi.restoreAllMocks());
 
@@ -36,5 +37,40 @@ describe("fetchGitHubStats", () => {
     const s = await fetchGitHubStats("shoots", undefined);
     expect(s.repos).toBe(0);
     expect(s.activity).toEqual([]);
+  });
+});
+
+describe("fetchProjectStats", () => {
+  const base: Project = { name: "Demo", image: "/d.png", meta: "x", last: "x", code: "https://github.com/u/demo" };
+
+  it("reads the commit count from the Link header and the date from pushed_at", async () => {
+    vi.stubGlobal("fetch", vi.fn(async (url: string) => {
+      if (url.includes("/commits")) {
+        return {
+          ok: true,
+          status: 200,
+          headers: { get: () => '<https://api.github.com/repositories/1/commits?per_page=1&page=428>; rel="last"' },
+          json: async () => [{}],
+        } as unknown as Response;
+      }
+      return { ok: true, status: 200, json: async () => ({ pushed_at: "2026-06-03T10:00:00Z" }) } as Response;
+    }));
+    const [p] = await fetchProjectStats([base], undefined);
+    expect(p.commits).toBe(428);
+    expect(p.lastUpdate).toBe("Jun 3");
+  });
+
+  it("leaves stats undefined when the repo is unavailable (private / 404)", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 404 } as Response)));
+    const [p] = await fetchProjectStats([base], undefined);
+    expect(p.commits).toBeUndefined();
+    expect(p.lastUpdate).toBeUndefined();
+  });
+
+  it("passes through projects without a GitHub repo untouched", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false } as Response)));
+    const noRepo: Project = { name: "X", image: "/x.png", meta: "x", last: "x" };
+    const [p] = await fetchProjectStats([noRepo], undefined);
+    expect(p).toEqual(noRepo);
   });
 });

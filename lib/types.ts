@@ -3,7 +3,7 @@ export type IconName = string;
 export interface Profile {
   brand: string; name: string; role: string; url: string;
   level: number; online: boolean;
-  statement: string;
+  statement?: string;
   xp: { title: string; sub: string };
 }
 export interface CountRow { label: string; n: number | null; }
@@ -16,9 +16,46 @@ export interface ProjectStat { value: string; key: string; cls: "members" | "ing
 export interface FeaturedProject { name: string; type: string; image: string; desc: string; stats: ProjectStat[]; live: string; code: string; }
 export interface Project {
   name: string; image: string; meta: string; last: string;
+  code?: string; // repo URL — capsule links here
+  live?: string; // live/demo URL — primary CTA on the Projects library page
+  ribbon?: boolean; // featured star on the library capsule
+  commits?: number; // filled live from GitHub (see fetchProjectStats)
+  lastUpdate?: string; // filled live from GitHub repo pushed_at (preformatted)
   milestones?: { done: number; total: number };
   achievement?: { icon: IconName; name: string; xp: string };
 }
+// ----- Project detail ("store page") -----
+export interface ChangelogSection { h?: string; body: string; }
+export interface ChangelogEntry {
+  date: string; title: string; subtitle?: string; body: string;
+  image?: string;  // in-card thumbnail + in-article figure
+  banner?: string; // wide hero banner in the modal
+  sections?: ChangelogSection[];
+}
+export interface TechGroup { area: string; items: string[]; }
+export interface ProjectAccess {
+  title: string; // run-block heading, e.g. "Launch MacroTrackr"
+  primary: { label: string; icon: IconName; href: string };
+  note: string;
+}
+export interface ProjectDetail {
+  category: string;       // breadcrumb + capsule kicker
+  summary: string;        // short blurb beside the capsule
+  releaseDate?: string;   // omitted row if absent
+  role: string;
+  context: string;        // "Contexte" — solo/personal/etc.
+  stack: string[];        // tag row
+  accessLabel: string;    // status meta + run-block kind pill
+  statusPill: string;     // libbar left pill ("Online" / "Private beta" …)
+  statusNote: string;     // libbar sentence after the bolded project name
+  access: ProjectAccess;
+  about: string[];        // prose paragraphs
+  aboutBullets?: string[];
+  screenshots?: string[]; // real shots; gallery pads the rest with placeholders
+  changelog: ChangelogEntry[];
+  tech: TechGroup[];
+}
+
 export interface FooterLink { label: string; href: string; }
 export interface FooterData { cols: { h: string; links: FooterLink[] }[]; social: { icon: IconName; href: string }[]; }
 

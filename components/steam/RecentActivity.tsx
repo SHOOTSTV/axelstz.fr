@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { PortfolioData, Project } from "@/lib/types";
 import { Icon } from "@/components/primitives/Icon";
 import { Frame } from "@/components/primitives/Frame";
@@ -8,7 +9,13 @@ function GameRow({ g }: { g: Project }) {
   return (
     <div className="game-row">
       <div className="game-top">
-        <span className="game-cap"><Frame src={g.image} alt={g.name} placeholder="capsule" /></span>
+        {g.code ? (
+          <a className="game-cap" href={g.code} target="_blank" rel="noopener noreferrer" aria-label={`${g.name} repository on GitHub`}>
+            <Frame src={g.image} alt={g.name} placeholder="capsule" />
+          </a>
+        ) : (
+          <span className="game-cap"><Frame src={g.image} alt={g.name} placeholder="capsule" /></span>
+        )}
         <span className="game-name">{g.name}</span>
         <span className="game-meta">
           <div className="ht">{g.meta}</div>
@@ -43,7 +50,7 @@ export function RecentActivity({ data }: { data: PortfolioData }) {
         </div>
         {data.projects.slice(0, 3).map((g, i) => <GameRow g={g} key={`${i}-${g.name}`} />)}
         <div className="activity-foot">
-          Show <a href="#">all recent projects</a> | <a href="#">reviews</a>
+          Show <Link href="/projects">all recent projects</Link> | <a href="#">reviews</a>
         </div>
       </div>
     </Reveal>

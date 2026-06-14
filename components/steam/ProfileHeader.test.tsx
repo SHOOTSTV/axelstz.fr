@@ -10,7 +10,6 @@ describe("ProfileHeader", () => {
     // level animates from 0 via StatNum, so assert the badge itself, not the value
     expect(screen.getByTitle("Account level")).toBeTruthy();
     expect(screen.getByText(portfolio.profile.xp.title)).toBeTruthy();
-    expect(screen.getByText(portfolio.profile.statement)).toBeTruthy();
   });
 
   it("shows a real contact CTA, not fake Edit profile / Trade Offer", () => {

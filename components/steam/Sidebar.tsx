@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { PortfolioData } from "@/lib/types";
 import { Icon } from "@/components/primitives/Icon";
 import { Reveal } from "@/components/primitives/Reveal";
@@ -22,12 +23,19 @@ export function Sidebar({ data }: { data: PortfolioData }) {
 
       <div className="side-block">
         <div className="count-list">
-          {data.counts.map((c) => (
-            <div className="count-row" key={c.label}>
-              <span className="lbl">{c.label}</span>
-              {c.n != null && <span className="n">{fmt(c.n)}</span>}
-            </div>
-          ))}
+          {data.counts.map((c) =>
+            c.label === "Projects" ? (
+              <Link className="count-row" href="/projects" key={c.label}>
+                <span className="lbl">{c.label}</span>
+                {c.n != null && <span className="n">{fmt(c.n)}</span>}
+              </Link>
+            ) : (
+              <div className="count-row" key={c.label}>
+                <span className="lbl">{c.label}</span>
+                {c.n != null && <span className="n">{fmt(c.n)}</span>}
+              </div>
+            )
+          )}
         </div>
       </div>
 
