@@ -50,7 +50,7 @@ export function RecentActivity({ data }: { data: PortfolioData }) {
         </div>
         {data.projects.slice(0, 3).map((g, i) => <GameRow g={g} key={`${i}-${g.name}`} />)}
         <div className="activity-foot">
-          Show <Link href="/projects">all recent projects</Link> | <a href="#">reviews</a>
+          Show <Link href="/projects">all recent projects</Link> | <Link href="#guestbook">reviews</Link>
         </div>
       </div>
     </Reveal>

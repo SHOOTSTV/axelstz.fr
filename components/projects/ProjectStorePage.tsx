@@ -349,7 +349,7 @@ export function ProjectStorePage({ data, project: p, detail: d }: { data: Portfo
                 {d.about.map((para, i) => <p key={i}>{para}</p>)}
                 {d.aboutBullets && (
                   <>
-                    <p style={{ marginBottom: 6 }}>What's inside:</p>
+                    <p style={{ marginBottom: 6 }}>What&apos;s inside:</p>
                     <ul className="about-list">
                       {d.aboutBullets.map((b, i) => <li key={i}>{b}</li>)}
                     </ul>

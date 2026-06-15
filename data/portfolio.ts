@@ -17,7 +17,7 @@ export const portfolio: PortfolioData = {
   nav: ["PROFILE", "PROJECTS", "ACTIVITY", "GUESTBOOK", "CONTACT"],
   counts: [
     { label: "Projects", n: 3 }, // _TODO_OWNER: keep equal to projects.length
-    { label: "Screenshots", n: 4 }, // _TODO_OWNER: real screenshot count
+    { label: "Screenshots", n: 7 },
     { label: "Repositories", n: null }, // filled live (Task 29)
     { label: "Reviews", n: null }, // filled by guestbook entries
   ],
