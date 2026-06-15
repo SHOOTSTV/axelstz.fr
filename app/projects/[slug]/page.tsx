@@ -17,7 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = portfolio.projects.find((p) => slugify(p.name) === slug);
   if (!project) return {};
   const d = getProjectDetail(project);
-  return { title: `${project.name} — Axel.S`, description: d.summary };
+  return {
+    title: `${project.name} — Axel.S`,
+    description: d.summary,
+    alternates: { canonical: `/projects/${slug}` },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
