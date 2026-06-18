@@ -86,7 +86,16 @@ function ProjectRow({ p, feat }: { p: Project; feat: boolean }) {
 export function ProjectsLibrary({ data }: { data: PortfolioData }) {
   const [tab, setTab] = useState<TabKey>("all");
   const [sort, setSort] = useState<SortKey>("commits");
+  const [cat, setCat] = useState<string>("all");
   const [q, setQ] = useState("");
+
+  const cats = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const p of data.projects) if (p.category) counts[p.category] = (counts[p.category] ?? 0) + 1;
+    return [{ key: "all", label: "All categories", n: data.projects.length }].concat(
+      Object.keys(counts).sort().map((c) => ({ key: c, label: c, n: counts[c] }))
+    );
+  }, [data.projects]);
 
   const tabs = useMemo(
     () => [
@@ -102,6 +111,7 @@ export function ProjectsLibrary({ data }: { data: PortfolioData }) {
     let list = data.projects.filter((p) => p.name.toLowerCase().includes(needle));
     if (tab === "live") list = list.filter((p) => p.live);
     else if (tab === "completed") list = list.filter(isComplete);
+    if (cat !== "all") list = list.filter((p) => p.category === cat);
 
     if (sort === "name") list = [...list].sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "commits") list = [...list].sort((a, b) => (b.commits ?? -1) - (a.commits ?? -1));
@@ -110,7 +120,7 @@ export function ProjectsLibrary({ data }: { data: PortfolioData }) {
       list = [...list].sort((a, b) => pr(b) - pr(a));
     }
     return list;
-  }, [data.projects, q, tab, sort]);
+  }, [data.projects, q, tab, sort, cat]);
 
   return (
     <>
@@ -151,6 +161,19 @@ export function ProjectsLibrary({ data }: { data: PortfolioData }) {
               ))}
             </div>
           </div>
+
+          {cats.length > 1 && (
+            <div className="lib-filter">
+              <span className="lf-label">Category</span>
+              <div className="lf-chips">
+                {cats.map((c) => (
+                  <button key={c.key} className={`lf-chip ${cat === c.key ? "active" : ""}`} onClick={() => setCat(c.key)}>
+                    {c.label}<span className="n">{c.n}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="lib-list">
             {rows.length ? (

@@ -23,6 +23,7 @@ export interface Project {
   lastUpdate?: string; // filled live from GitHub repo pushed_at (preformatted)
   milestones?: { done: number; total: number };
   achievement?: { icon: IconName; name: string; xp: string };
+  category?: string; // derived from projectDetails for the library category filter
 }
 // ----- Project detail ("store page") -----
 export interface ChangelogSection { h?: string; body: string; }

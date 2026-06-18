@@ -641,6 +641,31 @@ a:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visib
 .lib-sort .so:hover { color: #fff; }
 .lib-sort .so.active { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
 
+/* category filter chips */
+.lib-filter { display: flex; align-items: baseline; gap: 14px; margin: 0 0 18px; }
+.lib-filter .lf-label {
+  flex: 0 0 auto; font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); padding-top: 5px;
+}
+.lib-filter .lf-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.lf-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,.30); border: 1px solid var(--hair);
+  color: var(--link); font-family: var(--font); font-size: 13px;
+  padding: 6px 12px; cursor: pointer; white-space: nowrap;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.lf-chip .n {
+  font-size: 11px; color: var(--muted2);
+  background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 8px;
+}
+.lf-chip:hover { color: #fff; border-color: rgba(255,255,255,.22); }
+.lf-chip.active {
+  background: linear-gradient(180deg, #1fa3ff, #1184ea);
+  border-color: #0d6fc4; color: #fff;
+}
+.lf-chip.active .n { color: #fff; background: rgba(255,255,255,.20); }
+
 /* list */
 .lib-list { display: flex; flex-direction: column; gap: 14px; }
 .lib-empty { color: var(--muted2); font-size: 14px; padding: 40px 0; text-align: center; }

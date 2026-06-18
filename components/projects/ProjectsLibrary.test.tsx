@@ -39,6 +39,20 @@ describe("ProjectsLibrary", () => {
     expect(screen.queryByText("Bravo")).toBeNull();
   });
 
+  it("filters by category chips, sorted with All categories first", () => {
+    const cats = ["AI SaaS", "Browser extension", "Portfolio"];
+    const withCats: Project[] = projects.map((p, i) => ({ ...p, category: cats[i] }));
+    render(<ProjectsLibrary data={{ ...data, projects: withCats }} />);
+
+    // chips render with per-category counts
+    expect(screen.getByText("All categories")).toBeTruthy();
+    fireEvent.click(screen.getByText("AI SaaS"));
+
+    expect(screen.getByText("Alpha")).toBeTruthy(); // AI SaaS
+    expect(screen.queryByText("Bravo")).toBeNull(); // Browser extension
+    expect(screen.queryByText("Charlie")).toBeNull(); // Portfolio
+  });
+
   it("derives the primary CTA from the live URL (else falls back to code)", () => {
     render(<ProjectsLibrary data={data} />);
     const alpha = screen.getByText("Alpha").closest(".lib-row") as HTMLElement;
