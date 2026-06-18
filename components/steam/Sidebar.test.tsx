@@ -5,7 +5,7 @@ import { portfolio } from "@/data/portfolio";
 describe("Sidebar", () => {
   it("renders counts and real social links", () => {
     render(<Sidebar data={portfolio} />);
-    expect(screen.getByText("Repositories")).toBeTruthy();
+    expect(screen.getByText("Projects")).toBeTruthy();
     const gh = screen.getByText("GitHub").closest("a");
     expect(gh?.getAttribute("href")).toBe(portfolio.social[0].href);
   });

@@ -17,6 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: "https://axelstz.fr/screenshots",
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     ...portfolio.projects.map((p) => ({
       url: `https://axelstz.fr/projects/${slugify(p.name)}`,
       lastModified: now,

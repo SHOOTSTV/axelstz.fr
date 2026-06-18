@@ -30,7 +30,12 @@ const records: Record<string, ProjectDetail> = {
       "Daily dashboards and goal tracking",
       "History analytics over time",
     ],
-    screenshots: ["/images/macrotrackr.png"],
+    screenshots: [
+      "/images/macrotrackr.png",
+      "/images/macrotrackr-2.png",
+      "/images/macrotrackr-3.png",
+      "/images/macrotrackr-4.png",
+    ],
     changelog: [
       {
         date: "v1.21.1 · 13 Jun 2026",

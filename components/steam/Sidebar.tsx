@@ -24,8 +24,8 @@ export function Sidebar({ data }: { data: PortfolioData }) {
       <div className="side-block">
         <div className="count-list">
           {data.counts.map((c) =>
-            c.label === "Projects" ? (
-              <Link className="count-row" href="/projects" key={c.label}>
+            c.label === "Projects" || c.label === "Screenshots" ? (
+              <Link className="count-row" href={c.label === "Projects" ? "/projects" : "/screenshots"} key={c.label}>
                 <span className="lbl">{c.label}</span>
                 {c.n != null && <span className="n">{fmt(c.n)}</span>}
               </Link>
