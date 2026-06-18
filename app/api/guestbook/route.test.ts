@@ -10,10 +10,16 @@ vi.mock("@/lib/guestbook", () => ({
 import { GET, POST } from "./route";
 import { insertPending } from "@/lib/guestbook";
 
-const postReq = (body: unknown) =>
+let ipCounter = 0;
+const postReq = (body: unknown, ip?: string) =>
   new Request("http://localhost/api/guestbook", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      // Unique IP per call by default so the rate limiter never collides
+      // between unrelated tests; pass a fixed ip to exercise limiting.
+      "x-forwarded-for": ip ?? `10.0.0.${ipCounter++}`,
+    },
     body: JSON.stringify(body),
   });
 
@@ -50,5 +56,12 @@ describe("POST /api/guestbook", () => {
     const res = await POST(postReq({ name: "Bo", message: "hi", hp: "i am a bot" }));
     expect(res.status).toBe(200);
     expect(insertPending).not.toHaveBeenCalled();
+  });
+  it("rate-limits repeated submissions from the same IP", async () => {
+    const ip = "203.0.113.7";
+    const valid = { name: "Bo", message: "spam attempt" };
+    let last: Response | undefined;
+    for (let i = 0; i < 10; i++) last = await POST(postReq(valid, ip));
+    expect(last!.status).toBe(429);
   });
 });

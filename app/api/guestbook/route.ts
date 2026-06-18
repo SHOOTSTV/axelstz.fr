@@ -1,5 +1,14 @@
 import { z } from "zod";
 import { listApproved, insertPending } from "@/lib/guestbook";
+import { createRateLimiter } from "@/lib/ratelimit";
+
+// Max 5 guestbook signs per IP per minute (best-effort, per-instance).
+const limiter = createRateLimiter({ limit: 5, windowMs: 60_000 });
+
+function clientIp(request: Request): string {
+  const fwd = request.headers.get("x-forwarded-for");
+  return fwd?.split(",")[0]?.trim() || "unknown";
+}
 
 const schema = z.object({
   name: z.string().trim().min(1).max(40),
@@ -19,6 +28,10 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  if (!limiter.allow(clientIp(request))) {
+    return Response.json({ error: "too many requests" }, { status: 429 });
+  }
+
   let body: unknown;
   try {
     body = await request.json();
