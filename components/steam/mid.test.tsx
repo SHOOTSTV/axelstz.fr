@@ -6,14 +6,15 @@ import { AboutMe } from "@/components/steam/AboutMe";
 import { portfolio } from "@/data/portfolio";
 
 describe("mid sections", () => {
-  it("FeaturedStack renders the hot item", () => {
+  it("FeaturedStack renders a tile per stack item", () => {
     const { container } = render(<FeaturedStack data={portfolio} />);
-    expect(container.querySelector(".trade-item.hot")).toBeTruthy();
+    expect(container.querySelectorAll(".trade-item")).toHaveLength(portfolio.featuredStack.length);
   });
-  it("BigStats renders labels", () => {
+  it("BigStats renders labels for populated stats", () => {
     document.body.classList.add("motion-off");
-    render(<BigStats data={portfolio} />);
-    expect(screen.getByText("Projects shipped")).toBeTruthy();
+    const data = { ...portfolio, bigStats: portfolio.bigStats.map((s) => ({ ...s, value: 5 })) };
+    render(<BigStats data={data} />);
+    expect(screen.getByText("Repositories")).toBeTruthy();
   });
   it("AboutMe renders the stack specs", () => {
     render(<AboutMe data={portfolio} />);

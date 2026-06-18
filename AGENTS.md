@@ -26,5 +26,7 @@ Next.js 16 (App Router, RSC) · React 19 · TypeScript · Tailwind v4 · Vitest.
 ## Gotchas
 - **Content honesty:** English copy only; never invent metrics (DAU/uptime/stars). Use feature-truthful labels or leave a `_TODO_OWNER` stub.
 - **Slug agreement:** `lib/slug.ts` is shared by the projects library links and the `[slug]` route's `generateStaticParams` — both must agree; don't fork the logic.
+- **Asset paths:** `data/assets.test.ts` fails if any `portfolio` image path doesn't resolve to a file in `/public`. Add the file before referencing it.
 - Tests force `document.body.classList.add("motion-off")` to make animations resolve synchronously.
 - jsdom "HTMLCanvasElement.getContext()" warnings during tests are harmless (Starfield canvas).
+- Image scripts (`scripts/compress-images.mjs`, `gen-brand-assets.mjs`) load `sharp` from Next's own `node_modules` — it's not a declared dep; don't `import "sharp"` expecting a top-level install.

@@ -64,9 +64,9 @@ export function Guestbook() {
         <div className="comment-box gb-form">
           <span className="cb-av"><Avatar name={name || "?"} /></span>
           <span className="cb-field">
-            <input className="gb-name" placeholder="Your name" value={name} maxLength={40} onChange={(e) => setName(e.target.value)} />
-            <textarea placeholder="Leave a note" value={message} maxLength={280} onChange={(e) => setMessage(e.target.value)} />
-            <input className="gb-link" placeholder="Link (optional, https://…)" value={link} maxLength={200} onChange={(e) => setLink(e.target.value)} />
+            <input className="gb-name" aria-label="Your name" placeholder="Your name" value={name} maxLength={40} onChange={(e) => setName(e.target.value)} />
+            <textarea aria-label="Leave a note" placeholder="Leave a note" value={message} maxLength={280} onChange={(e) => setMessage(e.target.value)} />
+            <input className="gb-link" aria-label="Link (optional, your portfolio or GitHub profile)" placeholder="Link (optional, your portfolio or GitHub profile)" value={link} maxLength={200} onChange={(e) => setLink(e.target.value)} />
             <input className="gb-hp" name="hp" tabIndex={-1} autoComplete="off" aria-hidden value={hp} onChange={(e) => setHp(e.target.value)} />
             <button className="post" onClick={sign}>Sign the guestbook</button>
           </span>

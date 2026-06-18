@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Axel.S — Junior Web Developer";
+export const alt = "Axel.S — Full-Stack Web Developer";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -22,7 +22,7 @@ export default function OpengraphImage() {
       >
         <div style={{ fontSize: 30, letterSpacing: 8, color: "#66c0f4" }}>SHOOTS</div>
         <div style={{ fontSize: 88, fontWeight: 700, color: "#ffffff", marginTop: 12 }}>Axel.S</div>
-        <div style={{ fontSize: 40, marginTop: 8 }}>Junior Web Developer</div>
+        <div style={{ fontSize: 40, marginTop: 8 }}>Full-Stack Web Developer</div>
         <div style={{ display: "flex", marginTop: 36, fontSize: 26, color: "#8f98a0" }}>
           React · Next.js · TypeScript · Tailwind
         </div>

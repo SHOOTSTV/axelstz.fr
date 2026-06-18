@@ -7,7 +7,7 @@ const sample: PortfolioData = {
   counts: [{ label: "Projects", n: 12 }],
   badges: [{ label: "7", color: "#5a4b8a" }],
   social: [{ name: "GitHub", sub: "@shoots", icon: "github", href: "https://github.com/", level: 19, color: "#3a3a3a", online: true }],
-  featuredStack: [{ icon: "code" }],
+  featuredStack: [{ icon: "react", label: "React" }],
   bigStats: [{ key: "projects", value: 12, label: "Projects shipped" }],
   about: { star: "Axel.S", specHead: "My stack :", specs: ["React 18 · Next.js 15"] },
   featuredProject: { name: "Nebula", type: "SaaS", image: "/images/favg.png", desc: "x", stats: [{ value: "1k", key: "Users", cls: "members" }], live: "#", code: "#" },

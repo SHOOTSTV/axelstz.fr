@@ -1,5 +1,7 @@
+import Link from "next/link";
 import type { PortfolioData } from "@/lib/types";
 import { Frame } from "@/components/primitives/Frame";
+import { slugify } from "@/lib/slug";
 
 export function FeaturedProject({ data }: { data: PortfolioData }) {
   const g = data.featuredProject;
@@ -9,7 +11,7 @@ export function FeaturedProject({ data }: { data: PortfolioData }) {
       <div className="fav-group">
         <span className="fav-av"><Frame src={g.image} alt={g.name} placeholder="" /></span>
         <div className="fav-main">
-          <div className="fav-name"><b>{g.name}</b> — {g.type}</div>
+          <div className="fav-name"><Link href={`/projects/${slugify(g.name)}`}><b>{g.name}</b></Link> — {g.type}</div>
           <div className="fav-desc">{g.desc}</div>
           <div className="fav-stats">
             {g.stats.map((s) => (

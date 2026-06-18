@@ -38,7 +38,7 @@ export function TopBar({ data, current }: { data: PortfolioData; current?: strin
   }, [data.nav, current]);
 
   const hrefFor = (l: string) =>
-    l === "PROJECTS" ? "/projects" : current ? `/#${l.toLowerCase()}` : `#${l.toLowerCase()}`;
+    l === "PROJECTS" ? "/projects" : l === "CONTACT" ? "mailto:stankiewiczaxel1@gmail.com" : current ? `/#${l.toLowerCase()}` : `#${l.toLowerCase()}`;
   const isActive = (l: string) => (current ? l === current : `#${l.toLowerCase()}` === active);
 
   return (

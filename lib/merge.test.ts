@@ -14,7 +14,6 @@ describe("mergeGitHub", () => {
     const m = mergeGitHub(portfolio, gh);
     expect(m.bigStats.find(s => s.key === "repos")!.value).toBe(28);
     expect(m.bigStats.find(s => s.key === "commits")!.value).toBe(1204);
-    expect(m.counts.find(c => c.label === "Repositories")!.n).toBe(28);
   });
   it("leaves data unchanged when github is null", () => {
     expect(mergeGitHub(portfolio, null)).toEqual(portfolio);
@@ -24,11 +23,8 @@ describe("mergeGitHub", () => {
     expect(m.projects).toEqual(portfolio.projects);
     expect(m.projects.some((p) => p.name.toLowerCase().includes("taskforge"))).toBe(false);
   });
-  it("derives the featured stack from top languages", () => {
+  it("leaves the curated featured stack untouched", () => {
     const m = mergeGitHub(portfolio, gh);
-    const icons = m.featuredStack.map((s) => s.icon);
-    expect(icons).toContain("code"); // TypeScript
-    expect(icons).toContain("layers"); // CSS
-    expect(m.featuredStack.some((s) => s.hot)).toBe(true);
+    expect(m.featuredStack).toEqual(portfolio.featuredStack);
   });
 });

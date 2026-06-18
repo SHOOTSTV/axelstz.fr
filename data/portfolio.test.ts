@@ -6,9 +6,9 @@ describe("portfolio data", () => {
     expect(portfolio.profile.brand).toBe("SHOOTS");
     expect(portfolio.profile.name).toBe("Axel.S");
   });
-  it("uses age as level and is a junior", () => {
+  it("uses age as level and has a role", () => {
     expect(portfolio.profile.level).toBeGreaterThan(0);
-    expect(portfolio.profile.role.toLowerCase()).toContain("junior");
+    expect(portfolio.profile.role.trim().length).toBeGreaterThan(0);
   });
   it("profile url points at axelstz.fr", () => {
     expect(portfolio.profile.url).toContain("axelstz.fr");

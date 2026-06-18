@@ -19,7 +19,7 @@ export function ProfileHeader({ data }: { data: PortfolioData }) {
               </span>
             </div>
             <div className="av-photo">
-              <Frame src="/images/avatar.png" alt={`${p.name} avatar`} placeholder="Drop avatar" />
+              <Frame src="/images/avatar.png" alt={`${p.name} avatar`} placeholder="Drop avatar" priority />
               <span className="av-tag">{p.brand}</span>
             </div>
           </div>

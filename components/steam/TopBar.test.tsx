@@ -22,6 +22,11 @@ describe("TopBar", () => {
     expect(screen.getByText("PROJECTS").getAttribute("href")).toBe("/projects");
   });
 
+  it("links CONTACT to a mailto: address instead of an in-page anchor", () => {
+    render(<TopBar data={portfolio} />);
+    expect(screen.getByText("CONTACT").getAttribute("href")).toBe("mailto:stankiewiczaxel1@gmail.com");
+  });
+
   it("on a standalone page marks `current` active and points sections back home", () => {
     render(<TopBar data={portfolio} current="PROJECTS" />);
     expect(screen.getByText("PROJECTS").className).toContain("active");

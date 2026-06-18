@@ -104,7 +104,7 @@ function Media({ detail, name }: { detail: ProjectDetail; name: string }) {
     <div className="media-col">
       <div className="media-main" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
         <div className={`shot ${cur.src ? "zoomable" : ""}`} key={active} onClick={openLightbox}>
-          <Frame src={cur.src} alt={cur.src ? `${name} screenshot` : ""} placeholder={cur.placeholder} />
+          <Frame src={cur.src} alt={cur.src ? `${name} screenshot` : ""} placeholder={cur.placeholder} priority />
         </div>
         {n > 1 && (
           <>
