@@ -32,6 +32,7 @@ describe("Guestbook", () => {
     vi.stubGlobal("fetch", mockFetch([]));
     render(<Guestbook />);
     await screen.findByText(/be the first to sign/i);
+    await userEvent.click(screen.getByRole("button", { name: /add a comment/i }));
     await userEvent.type(screen.getByPlaceholderText(/your name/i), "Bo");
     await userEvent.type(screen.getByPlaceholderText(/leave a note/i), "great work");
     await userEvent.click(screen.getByRole("button", { name: /sign/i }));
@@ -39,9 +40,10 @@ describe("Guestbook", () => {
     expect(screen.queryByText("great work")).toBeNull();
   });
 
-  it("renders a hidden honeypot field", () => {
+  it("renders a hidden honeypot field once the form is open", async () => {
     vi.stubGlobal("fetch", mockFetch([]));
     const { container } = render(<Guestbook />);
+    await userEvent.click(await screen.findByRole("button", { name: /add a comment/i }));
     expect(container.querySelector('input[name="hp"]')).toBeTruthy();
   });
 });

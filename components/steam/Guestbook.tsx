@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { avatarFor } from "@/components/primitives/avatar";
 import { isHttpUrl } from "@/lib/url";
 
@@ -29,6 +29,16 @@ export function Guestbook() {
   const [link, setLink] = useState("");
   const [hp, setHp] = useState("");
   const [sent, setSent] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (formRef.current && !formRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, [open]);
 
   useEffect(() => {
     let active = true;
@@ -63,7 +73,7 @@ export function Guestbook() {
       {sent ? (
         <div className="gb-sent">Thanks — your note is awaiting approval.</div>
       ) : open ? (
-        <div className="comment-box gb-form">
+        <div className="comment-box gb-form" ref={formRef}>
           <span className="cb-av"><Avatar name={name || "?"} /></span>
           <span className="cb-field">
             <input className="gb-name" aria-label="Your name" placeholder="Your name" value={name} maxLength={40} autoFocus onChange={(e) => setName(e.target.value)} />
@@ -75,8 +85,8 @@ export function Guestbook() {
         </div>
       ) : (
         <div className="comment-box gb-collapsed">
-          <span className="cb-av"><Avatar name="?" /></span>
-          <button type="button" className="gb-add" onClick={() => setOpen(true)}>Add a comment</button>
+          <span className="cb-av gb-av-empty" aria-hidden />
+          <button type="button" className="gb-add" onClick={() => setOpen(true)}>Add a comment…</button>
           <button type="button" className="post" onClick={() => setOpen(true)}>Sign</button>
         </div>
       )}
