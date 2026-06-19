@@ -28,5 +28,5 @@ export async function POST(request: Request) {
   else if (action === "delete") await remove(id);
   else return Response.json({ error: "bad action" }, { status: 400 });
 
-  return Response.redirect(new URL("/guestbook/admin", request.url), 303);
+  return Response.redirect(new URL("/admin", request.url), 303);
 }
