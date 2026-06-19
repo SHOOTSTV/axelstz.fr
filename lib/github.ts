@@ -1,6 +1,7 @@
 // Server-only fetcher: called from Server Components / route handlers (see app/page.tsx).
 // Reads no secrets itself (token is passed in by the caller from process.env).
-import type { GitHubStats, Project } from "@/lib/types";
+import type { ChangelogEntry, GitHubStats, Project } from "@/lib/types";
+import { parseChangelog } from "@/lib/changelog";
 
 const API = "https://api.github.com";
 const EMPTY: GitHubStats = { repos: 0, commits: 0, stars: 0, languages: [], activity: [] };
@@ -86,6 +87,20 @@ function shortDate(iso: string): string {
   const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric", timeZone: "UTC" };
   if (d.getUTCFullYear() !== new Date().getUTCFullYear()) opts.year = "numeric";
   return new Intl.DateTimeFormat("en-US", opts).format(d);
+}
+
+// Live changelog: read CHANGELOG.md from the project's repo (works for private repos
+// when the token has Contents:read) and parse it. Returns null on any miss so the
+// caller can fall back to the hardcoded changelog.
+export async function fetchChangelog(codeUrl: string | undefined, token?: string): Promise<ChangelogEntry[] | null> {
+  const r = parseRepo(codeUrl);
+  if (!r) return null;
+  const file = await gh<{ content?: string; encoding?: string }>(
+    `/repos/${r.owner}/${r.repo}/contents/CHANGELOG.md`, token);
+  if (!file?.content) return null;
+  const md = Buffer.from(file.content, file.encoding === "base64" ? "base64" : "utf8").toString("utf8");
+  const entries = parseChangelog(md);
+  return entries.length ? entries : null;
 }
 
 // Enrich projects with live commit counts + last-update dates from their GitHub repos.
