@@ -18,10 +18,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = portfolio.projects.find((p) => slugify(p.name) === slug);
   if (!project) return {};
   const d = getProjectDetail(project);
+  // Per-project share card: short, truthful tagline from the summary's first sentence.
+  const tagline = (d.summary.split(". ")[0] ?? d.summary).slice(0, 120);
+  const ogImage = `/og?${new URLSearchParams({
+    name: project.name,
+    title: d.category,
+    tagline,
+  }).toString()}`;
   return {
     title: `${project.name} — Axel.S`,
     description: d.summary,
     alternates: { canonical: `/projects/${slug}` },
+    openGraph: {
+      type: "website",
+      url: `/projects/${slug}`,
+      title: `${project.name} — Axel.S`,
+      description: d.summary,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${project.name} — ${d.category}` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} — Axel.S`,
+      description: d.summary,
+      images: [ogImage],
+    },
   };
 }
 
