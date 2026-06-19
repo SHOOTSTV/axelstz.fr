@@ -1,4 +1,5 @@
 import { listPending } from "@/lib/guestbook";
+import { isHttpUrl } from "@/lib/url";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,7 @@ export default async function GuestbookAdminPage() {
         <div key={n.id} style={{ border: "1px solid #2a3138", borderRadius: 6, padding: 12, margin: "12px 0" }}>
           <div style={{ fontWeight: 600 }}>
             {n.name}
-            {n.link && (
+            {n.link && isHttpUrl(n.link) && (
               <a href={n.link} target="_blank" rel="noreferrer nofollow" style={{ marginLeft: 8, fontSize: 12 }}>
                 {n.link}
               </a>

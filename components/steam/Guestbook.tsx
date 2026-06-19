@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { avatarFor } from "@/components/primitives/avatar";
+import { isHttpUrl } from "@/lib/url";
 
 interface Note {
   id: string;
@@ -22,6 +23,7 @@ function Avatar({ name }: { name: string }) {
 export function Guestbook() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [link, setLink] = useState("");
@@ -60,16 +62,22 @@ export function Guestbook() {
 
       {sent ? (
         <div className="gb-sent">Thanks — your note is awaiting approval.</div>
-      ) : (
+      ) : open ? (
         <div className="comment-box gb-form">
           <span className="cb-av"><Avatar name={name || "?"} /></span>
           <span className="cb-field">
-            <input className="gb-name" aria-label="Your name" placeholder="Your name" value={name} maxLength={40} onChange={(e) => setName(e.target.value)} />
+            <input className="gb-name" aria-label="Your name" placeholder="Your name" value={name} maxLength={40} autoFocus onChange={(e) => setName(e.target.value)} />
             <textarea aria-label="Leave a note" placeholder="Leave a note" value={message} maxLength={280} onChange={(e) => setMessage(e.target.value)} />
             <input className="gb-link" aria-label="Link (optional, your portfolio or GitHub profile)" placeholder="Link (optional, your portfolio or GitHub profile)" value={link} maxLength={200} onChange={(e) => setLink(e.target.value)} />
             <input className="gb-hp" name="hp" tabIndex={-1} autoComplete="off" aria-hidden value={hp} onChange={(e) => setHp(e.target.value)} />
             <button className="post" onClick={sign}>Sign the guestbook</button>
           </span>
+        </div>
+      ) : (
+        <div className="comment-box gb-collapsed">
+          <span className="cb-av"><Avatar name="?" /></span>
+          <button type="button" className="gb-add" onClick={() => setOpen(true)}>Add a comment</button>
+          <button type="button" className="post" onClick={() => setOpen(true)}>Sign</button>
         </div>
       )}
 
@@ -80,7 +88,7 @@ export function Guestbook() {
       {notes.map((c) => (
         <div className="comment" key={c.id}>
           <span className="c-av">
-            {c.link ? (
+            {c.link && isHttpUrl(c.link) ? (
               <a href={c.link} target="_blank" rel="noreferrer nofollow"><Avatar name={c.name} /></a>
             ) : (
               <Avatar name={c.name} />
