@@ -1,0 +1,1 @@
+Axel S. — Full-Stack Developer. Building modern web applications with React, Next.js, TypeScript, and AI.
