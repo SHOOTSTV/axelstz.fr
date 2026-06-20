@@ -59,9 +59,10 @@ export const portfolio: PortfolioData = {
     { label: "Reviews", n: null }, // filled by guestbook entries
   ],
   badges: [
-    { label: "3", color: "#5a4b8a" },
-    { label: "'26", color: "#7a2f5a" },
-    { label: "", color: "#6a3a3a", icon: "rocket" },
+    { icon: "rocket",  color: "#5a4b8a", name: "Shipper",        desc: "Shipped multiple live projects",    year: 2026, xp: 100 },
+    { icon: "layers",  color: "#2f5a7a", name: "Full-Stack",     desc: "Front-end to database, end to end",  year: 2026, xp: 80 },
+    { icon: "github",  color: "#3a3a3a", name: "Open Source",    desc: "Public work on GitHub",              year: 2026, xp: 60 },
+    { icon: "comment", color: "#7a2f5a", name: "Guestbook Host", desc: "Built a live visitor guestbook",     year: 2026, xp: 40 },
   ],
   social: [
     {
