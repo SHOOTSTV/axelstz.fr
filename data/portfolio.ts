@@ -56,7 +56,6 @@ export const portfolio: PortfolioData = {
   counts: [
     { label: "Projects", n: projects.length },
     { label: "Screenshots", n: 7 },
-    { label: "Reviews", n: null }, // filled by guestbook entries
   ],
   badges: [
     { icon: "rocket",  color: "#5a4b8a", name: "Shipper",        desc: "Shipped multiple live projects",    year: 2026, xp: 100 },
