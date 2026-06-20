@@ -14,9 +14,6 @@ export function AboutMe({ data }: { data: PortfolioData }) {
             <div className="spec" key={i}>★ <b>{text}</b></div>
           ))}
         </div>
-        <div className="bracket about-side">
-          <a className="trade" href="#contact">Get in touch</a>
-        </div>
       </div>
       <div className="show-dots">· · ·</div>
     </div>
