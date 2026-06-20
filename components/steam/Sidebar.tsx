@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { PortfolioData } from "@/lib/types";
 import { Icon } from "@/components/primitives/Icon";
+import { BadgeTile } from "@/components/steam/BadgeTile";
 import { Reveal } from "@/components/primitives/Reveal";
 import { fmt } from "@/components/primitives/StatNum";
 
@@ -14,9 +15,7 @@ export function Sidebar({ data }: { data: PortfolioData }) {
         <div className="side-h">Badges <span className="n">{data.badges.length}</span></div>
         <div className="badge-row">
           {data.badges.map((b, i) => (
-            <span className="badge-ic" key={i} style={{ background: `linear-gradient(160deg, ${b.color}, #14171b)` }}>
-              {b.icon ? <Icon name={b.icon} size={20} /> : b.label}
-            </span>
+            <BadgeTile badge={b} key={i} />
           ))}
         </div>
       </div>
