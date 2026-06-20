@@ -268,20 +268,20 @@ body.motion-off #stars { display: none; }
 .badge-tile .badge-ic { cursor: default; }
 /* Steam-style light tooltip */
 .badge-tip {
-  position: absolute; left: 0; top: calc(100% + 10px); z-index: 20;
+  position: absolute; left: 0; bottom: calc(100% + 10px); z-index: 20;
   width: max-content; max-width: 230px;
   display: flex; flex-direction: column; gap: 1px;
   padding: 8px 11px; border-radius: 3px;
   background: linear-gradient(180deg, #e9eaec 0%, #c6c8cb 100%);
   border: 1px solid rgba(0,0,0,.5); text-align: left;
   box-shadow: 0 8px 22px rgba(0,0,0,.6);
-  opacity: 0; transform: translateY(-3px); pointer-events: none;
+  opacity: 0; transform: translateY(3px); pointer-events: none;
   transition: opacity .12s ease, transform .12s ease;
 }
 .badge-tip::before {
-  content: ""; position: absolute; left: 18px; top: -6px;
+  content: ""; position: absolute; left: 18px; bottom: -6px;
   border-left: 6px solid transparent; border-right: 6px solid transparent;
-  border-bottom: 6px solid #e9eaec;
+  border-top: 6px solid #c6c8cb;
 }
 .badge-tile:hover .badge-tip,
 .badge-tile:focus-visible .badge-tip { opacity: 1; transform: translateY(0); }
