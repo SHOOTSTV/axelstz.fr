@@ -284,8 +284,7 @@ body.motion-off #stars { display: none; }
   border-bottom: 6px solid #e9eaec;
 }
 .badge-tile:hover .badge-tip,
-.badge-tile:focus-within .badge-tip,
-.badge-tile:focus .badge-tip { opacity: 1; transform: translateY(0); }
+.badge-tile:focus-visible .badge-tip { opacity: 1; transform: translateY(0); }
 .badge-tip .bt-name { font-size: 13px; font-weight: 700; color: #20242b; letter-spacing: .2px; }
 .badge-tip .bt-desc { font-size: 12px; color: #3c424b; }
 .badge-tip .bt-meta { font-size: 11px; color: #5b626d; margin-top: 2px; }
