@@ -206,7 +206,7 @@ export async function GET(req: Request) {
             }}
           >
             <span><span style={{ color: "#818cf8" }}>const</span>{`${NB}`}<span style={{ color: "#67e8f9" }}>developer</span>{`${NB}=${NB}{`}</span>
-            <span>{`${NB}${NB}stack:${NB}[`}<span style={{ color: "#4ade80" }}>"React"</span>{`,${NB}`}<span style={{ color: "#4ade80" }}>"Next"</span>{"],"}</span>
+            <span>{`${NB}${NB}stack:${NB}[`}<span style={{ color: "#4ade80" }}>{'"React"'}</span>{`,${NB}`}<span style={{ color: "#4ade80" }}>{'"Next"'}</span>{"],"}</span>
             <span>{`${NB}${NB}typescript:${NB}`}<span style={{ color: "#818cf8" }}>true</span>{","}</span>
             <span>{`${NB}${NB}ai:${NB}`}<span style={{ color: "#818cf8" }}>true</span>{","}</span>
             <span>{"};"}</span>

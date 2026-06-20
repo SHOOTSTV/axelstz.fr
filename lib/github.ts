@@ -122,3 +122,16 @@ export async function fetchProjectStats(projects: Project[], token?: string): Pr
     })
   );
 }
+
+// Sum of commit counts across the owner's project repos (the Projects library set).
+// Reuses repoCommits' Link-header trick; private/missing/non-repo projects contribute 0.
+export async function fetchTotalCommits(projects: Project[], token?: string): Promise<number> {
+  const counts = await Promise.all(
+    projects.map(async (p) => {
+      const r = parseRepo(p.code);
+      if (!r) return 0;
+      return (await repoCommits(r.owner, r.repo, token)) ?? 0;
+    })
+  );
+  return counts.reduce((a, n) => a + n, 0);
+}

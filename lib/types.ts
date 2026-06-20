@@ -7,7 +7,7 @@ export interface Profile {
   xp: { title: string; sub: string };
 }
 export interface CountRow { label: string; n: number | null; }
-export interface Badge { label: string; color: string; icon?: IconName; }
+export interface Badge { icon: IconName; color: string; name: string; desc: string; year: number; xp?: number; }
 export interface Social { name: string; sub: string; icon: IconName; href: string; level: number; color: string; online: boolean; }
 export interface StackItem { icon: IconName; label: string; }
 export interface BigStat { key: "projects" | "repos" | "commits" | "stars" | string; value: number; label: string; }

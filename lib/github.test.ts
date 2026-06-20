@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { fetchGitHubStats, fetchProjectStats } from "@/lib/github";
+import { fetchGitHubStats, fetchProjectStats, fetchTotalCommits } from "@/lib/github";
 import type { Project } from "@/lib/types";
 
 beforeEach(() => vi.restoreAllMocks());
@@ -72,5 +72,28 @@ describe("fetchProjectStats", () => {
     const noRepo: Project = { name: "X", image: "/x.png", meta: "x", last: "x" };
     const [p] = await fetchProjectStats([noRepo], undefined);
     expect(p).toEqual(noRepo);
+  });
+});
+
+describe("fetchTotalCommits", () => {
+  const a: Project = { name: "A", image: "/a.png", meta: "x", last: "x", code: "https://github.com/u/a" };
+  const b: Project = { name: "B", image: "/b.png", meta: "x", last: "x", code: "https://github.com/u/b" };
+  const noRepo: Project = { name: "N", image: "/n.png", meta: "x", last: "x" };
+
+  it("sums commit counts across project repos and ignores repo-less projects", async () => {
+    vi.stubGlobal("fetch", vi.fn(async (url: string) => ({
+      ok: true,
+      status: 200,
+      headers: { get: () => `<https://api.github.com/repositories/1/commits?per_page=1&page=${url.includes("/u/a/") ? 300 : 200}>; rel="last"` },
+      json: async () => [{}],
+    } as unknown as Response)));
+    const total = await fetchTotalCommits([a, b, noRepo], undefined);
+    expect(total).toBe(500);
+  });
+
+  it("returns 0 when every repo is unavailable", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 404 } as Response)));
+    const total = await fetchTotalCommits([a, b], undefined);
+    expect(total).toBe(0);
   });
 });

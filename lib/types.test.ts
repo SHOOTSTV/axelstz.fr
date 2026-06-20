@@ -5,7 +5,7 @@ const sample: PortfolioData = {
   profile: { brand: "SHOOTS", name: "Axel.S", role: "Junior Web Developer", url: "axelstz.fr/profile", level: 19, online: true, statement: "I build for the web.", xp: { title: "Junior Web Developer", sub: "Level 19" } },
   nav: ["PROJECTS"],
   counts: [{ label: "Projects", n: 12 }],
-  badges: [{ label: "7", color: "#5a4b8a" }],
+  badges: [{ icon: "rocket", color: "#5a4b8a", name: "Shipper", desc: "Shipped projects", year: 2026, xp: 50 }],
   social: [{ name: "GitHub", sub: "@shoots", icon: "github", href: "https://github.com/", level: 19, color: "#3a3a3a", online: true }],
   featuredStack: [{ icon: "react", label: "React" }],
   bigStats: [{ key: "projects", value: 12, label: "Projects shipped" }],
