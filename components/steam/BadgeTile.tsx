@@ -5,7 +5,7 @@ export function BadgeTile({ badge }: { badge: Badge }) {
   const label = `${badge.name} — ${badge.desc}`;
   return (
     <span className="badge-tile" tabIndex={0} aria-label={label}>
-      <span className="badge-ic" style={{ background: `linear-gradient(160deg, ${badge.color}, #14171b)` }}>
+      <span className="badge-ic" style={{ background: `linear-gradient(160deg, ${badge.color}, color-mix(in srgb, ${badge.color} 52%, #0b0d10))` }}>
         <Icon name={badge.icon} size={20} />
       </span>
       <span className="badge-tip" role="tooltip">
