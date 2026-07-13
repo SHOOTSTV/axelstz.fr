@@ -8,10 +8,8 @@ import { Icon } from "@/components/primitives/Icon";
 import { Frame } from "@/components/primitives/Frame";
 import { Prog } from "@/components/primitives/Prog";
 
-type TabKey = "all" | "live" | "completed";
+type TabKey = "all" | "live";
 type SortKey = "commits" | "name" | "progress";
-
-const isComplete = (p: Project) => !!p.milestones && p.milestones.done === p.milestones.total;
 
 function ProjectRow({ p, feat }: { p: Project; feat: boolean }) {
   const href = `/projects/${slugify(p.name)}`;
@@ -101,7 +99,6 @@ export function ProjectsLibrary({ data }: { data: PortfolioData }) {
     () => [
       { key: "all" as const, label: "All projects", n: data.projects.length },
       { key: "live" as const, label: "Live", n: data.projects.filter((p) => p.live).length },
-      { key: "completed" as const, label: "Completed 100%", n: data.projects.filter(isComplete).length },
     ],
     [data.projects]
   );
@@ -110,7 +107,6 @@ export function ProjectsLibrary({ data }: { data: PortfolioData }) {
     const needle = q.trim().toLowerCase();
     let list = data.projects.filter((p) => p.name.toLowerCase().includes(needle));
     if (tab === "live") list = list.filter((p) => p.live);
-    else if (tab === "completed") list = list.filter(isComplete);
     if (cat !== "all") list = list.filter((p) => p.category === cat);
 
     if (sort === "name") list = [...list].sort((a, b) => a.name.localeCompare(b.name));

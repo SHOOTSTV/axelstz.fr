@@ -5,7 +5,7 @@ import type { PortfolioData } from "@/lib/types";
 
 // `current` marks the active standalone page (e.g. "PROJECTS"). When set, the
 // scroll-spy is disabled and section links point back to the homepage anchors.
-export function TopBar({ data, current }: { data: PortfolioData; current?: string }) {
+export function TopBar({ data, current, right }: { data: PortfolioData; current?: string; right?: React.ReactNode }) {
   const [active, setActive] = useState(`#${data.nav[0].toLowerCase()}`);
 
   useEffect(() => {
@@ -55,6 +55,7 @@ export function TopBar({ data, current }: { data: PortfolioData; current?: strin
               );
             })}
           </nav>
+          {right && <div className="top-actions">{right}</div>}
         </div>
       </div>
     </header>

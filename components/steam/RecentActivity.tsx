@@ -16,7 +16,7 @@ function GameRow({ g }: { g: Project }) {
         <Link className="game-name" href={`/projects/${slugify(g.name)}`}>{g.name}</Link>
         <span className="game-meta">
           <div className="ht">{g.meta}</div>
-          <div>{g.last}</div>
+          <div>{g.live && <span className="live-dot" aria-hidden="true" />}{g.last}</div>
         </span>
       </div>
       <div className="game-detail">

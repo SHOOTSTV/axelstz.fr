@@ -109,11 +109,16 @@ a:hover { color: var(--bright); }
 .top-main { display: flex; align-items: center; gap: 36px; height: 56px; }
 .nav-main { display: flex; gap: 26px; align-items: center; }
 .nav-main a {
-  font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-  color: #b8c0c8; padding: 4px 0;
+  position: relative;
+  font-size: 14px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase;
+  color: #c7d5e0; padding: 4px 0;
 }
 .nav-main a:hover { color: #fff; }
-.nav-main a.active { color: var(--link); }
+.nav-main a.active { color: #1a9fff; }
+.nav-main a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
+  background: #1a9fff;
+}
 
 /* ============================================================
    PROFILE HEADER (avatar | name | level)
@@ -403,6 +408,20 @@ body.motion-off .badge-tip { transition: none; }
 a.game-name:hover { color: var(--link); text-decoration: underline; }
 .game-meta { text-align: right; color: var(--muted2); font-size: 13px; line-height: 1.5; }
 .game-meta .ht { color: var(--text); }
+.live-dot {
+  position: relative; display: inline-block; width: 7px; height: 7px;
+  margin-right: 7px; border-radius: 50%; background: #5cca6a; vertical-align: middle;
+}
+.live-dot::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; background: #5cca6a;
+  animation: livePing 1.8s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes livePing {
+  0% { transform: scale(1); opacity: .7; }
+  75%, 100% { transform: scale(2.6); opacity: 0; }
+}
+body.motion-off .live-dot::before { animation: none; }
+@media (prefers-reduced-motion: reduce) { .live-dot::before { animation: none; } }
 .game-detail { display: flex; gap: 16px; align-items: center; margin-top: 14px; padding-left: 0; }
 .ach-card {
   display: flex; gap: 10px; align-items: center; width: 290px; flex: 0 0 auto;
@@ -528,6 +547,14 @@ body.motion-off .fav-stats > * { opacity: 1; transform: none; animation: none; }
 /* ===== Recruiter toggle + Tweaks panel ===== */
 .recruiter-toggle { background: var(--btn-grad); color: #1e2d0a; border: none; padding: 7px 14px; border-radius: 3px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font); }
 .recruiter-toggle:hover { background: var(--btn-grad-hover); color: #16210a; }
+.top-main .top-actions { margin-left: auto; display: flex; align-items: center; }
+.recruiter-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; color: #c7d5e0; border: 1px solid #2a3138; border-radius: 4px;
+  padding: 5px 12px; font-size: 12px; font-weight: 500; letter-spacing: .02em;
+  cursor: pointer; font-family: var(--font); white-space: nowrap;
+}
+.recruiter-chip:hover { border-color: #66c0f4; color: #fff; }
 
 /* cross-fade the Steam<->resume swap (View Transitions API) */
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .42s; }
@@ -552,13 +579,15 @@ body.motion-off .fav-stats > * { opacity: 1; transform: none; animation: none; }
   .resume { color: #111; }
   .resume-head h1, .resume-section h3 { color: #000; }
   .resume-role { color: #225; }
-  .recruiter-toggle, .bg-stage { display: none !important; }
+  .recruiter-toggle, .recruiter-chip, .bg-stage { display: none !important; }
 }
 
 /* ===== Responsive: tablet / mobile ===== */
 @media (max-width: 760px) {
-  .nav-main { gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .top-main { gap: 18px; }
+  .top-main { flex-wrap: wrap; gap: 8px 18px; height: auto; padding: 10px 0; }
+  .top-actions { order: 0; margin-left: auto; }
+  .nav-main { order: 1; flex: 1 1 100%; gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .nav-main::-webkit-scrollbar { display: none; }
   .stat-row { flex-wrap: wrap; gap: 14px; }
   .fav-group { flex-direction: column; }
 }
@@ -966,9 +995,6 @@ body.motion-off .media-main .shot { animation: none; }
 .run-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
 .run-head .rh-title { font-size: 19px; color: #e6e9ec; font-weight: 400; }
 .run-head .rh-actions { display: flex; align-items: center; gap: 10px; }
-.kind-pill {
-  background: #0c1016; color: #cfe6f7; font-size: 12px; font-weight: 500; padding: 8px 14px; white-space: nowrap;
-}
 .btn-green {
   display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer;
   background: var(--btn-grad); color: #d2e885; font-family: var(--font);

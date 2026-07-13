@@ -13,7 +13,7 @@ interface Row {
   name: string;
   message: string;
   link: string | null;
-  created_at: string;
+  created_at: string | Date;
 }
 
 function db() {
@@ -27,7 +27,7 @@ const toNote = (r: Row): Note => ({
   name: r.name,
   message: r.message,
   link: r.link,
-  createdAt: r.created_at,
+  createdAt: r.created_at instanceof Date ? r.created_at.toISOString() : r.created_at,
 });
 
 export async function listApproved(limit = 100): Promise<Note[]> {
