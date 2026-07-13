@@ -966,9 +966,6 @@ body.motion-off .media-main .shot { animation: none; }
 .run-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
 .run-head .rh-title { font-size: 19px; color: #e6e9ec; font-weight: 400; }
 .run-head .rh-actions { display: flex; align-items: center; gap: 10px; }
-.kind-pill {
-  background: #0c1016; color: #cfe6f7; font-size: 12px; font-weight: 500; padding: 8px 14px; white-space: nowrap;
-}
 .btn-green {
   display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer;
   background: var(--btn-grad); color: #d2e885; font-family: var(--font);

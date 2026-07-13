@@ -331,7 +331,6 @@ export function ProjectStorePage({ data, project: p, detail: d }: { data: Portfo
             <div className="run-head">
               <div className="rh-title">{d.access.title}</div>
               <div className="rh-actions">
-                <span className="kind-pill">{d.accessLabel}</span>
                 <a className="btn-green" href={d.access.primary.href} target="_blank" rel="noreferrer">
                   <Icon name={d.access.primary.icon} size={15} /> {d.access.primary.label}
                 </a>
