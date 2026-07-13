@@ -41,10 +41,7 @@ function Inner({ data }: { data: PortfolioData }) {
         <div className="bg-vignette" />
       </div>
       <div className="shell">
-        <TopBar data={data} />
-        <div className="content" style={{ display: "flex", justifyContent: "flex-end", paddingTop: 8 }}>
-          <RecruiterToggle />
-        </div>
+        <TopBar data={data} right={<RecruiterToggle variant="chip" />} />
         <ProfileHeader data={data} />
         <main id="profile">
           <div className="content">

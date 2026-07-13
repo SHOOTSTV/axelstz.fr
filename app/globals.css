@@ -109,11 +109,16 @@ a:hover { color: var(--bright); }
 .top-main { display: flex; align-items: center; gap: 36px; height: 56px; }
 .nav-main { display: flex; gap: 26px; align-items: center; }
 .nav-main a {
-  font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-  color: #b8c0c8; padding: 4px 0;
+  position: relative;
+  font-size: 14px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase;
+  color: #c7d5e0; padding: 4px 0;
 }
 .nav-main a:hover { color: #fff; }
-.nav-main a.active { color: var(--link); }
+.nav-main a.active { color: #1a9fff; }
+.nav-main a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
+  background: #1a9fff;
+}
 
 /* ============================================================
    PROFILE HEADER (avatar | name | level)
@@ -542,6 +547,14 @@ body.motion-off .fav-stats > * { opacity: 1; transform: none; animation: none; }
 /* ===== Recruiter toggle + Tweaks panel ===== */
 .recruiter-toggle { background: var(--btn-grad); color: #1e2d0a; border: none; padding: 7px 14px; border-radius: 3px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font); }
 .recruiter-toggle:hover { background: var(--btn-grad-hover); color: #16210a; }
+.top-main .top-actions { margin-left: auto; display: flex; align-items: center; }
+.recruiter-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; color: #c7d5e0; border: 1px solid #2a3138; border-radius: 4px;
+  padding: 5px 12px; font-size: 12px; font-weight: 500; letter-spacing: .02em;
+  cursor: pointer; font-family: var(--font); white-space: nowrap;
+}
+.recruiter-chip:hover { border-color: #66c0f4; color: #fff; }
 
 /* cross-fade the Steam<->resume swap (View Transitions API) */
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .42s; }
@@ -566,13 +579,15 @@ body.motion-off .fav-stats > * { opacity: 1; transform: none; animation: none; }
   .resume { color: #111; }
   .resume-head h1, .resume-section h3 { color: #000; }
   .resume-role { color: #225; }
-  .recruiter-toggle, .bg-stage { display: none !important; }
+  .recruiter-toggle, .recruiter-chip, .bg-stage { display: none !important; }
 }
 
 /* ===== Responsive: tablet / mobile ===== */
 @media (max-width: 760px) {
-  .nav-main { gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .top-main { gap: 18px; }
+  .top-main { flex-wrap: wrap; gap: 8px 18px; height: auto; padding: 10px 0; }
+  .top-actions { order: 0; margin-left: auto; }
+  .nav-main { order: 1; flex: 1 1 100%; gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .nav-main::-webkit-scrollbar { display: none; }
   .stat-row { flex-wrap: wrap; gap: 14px; }
   .fav-group { flex-direction: column; }
 }
