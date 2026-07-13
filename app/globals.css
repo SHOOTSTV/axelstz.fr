@@ -403,6 +403,20 @@ body.motion-off .badge-tip { transition: none; }
 a.game-name:hover { color: var(--link); text-decoration: underline; }
 .game-meta { text-align: right; color: var(--muted2); font-size: 13px; line-height: 1.5; }
 .game-meta .ht { color: var(--text); }
+.live-dot {
+  position: relative; display: inline-block; width: 7px; height: 7px;
+  margin-right: 7px; border-radius: 50%; background: #5cca6a; vertical-align: middle;
+}
+.live-dot::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; background: #5cca6a;
+  animation: livePing 1.8s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes livePing {
+  0% { transform: scale(1); opacity: .7; }
+  75%, 100% { transform: scale(2.6); opacity: 0; }
+}
+body.motion-off .live-dot::before { animation: none; }
+@media (prefers-reduced-motion: reduce) { .live-dot::before { animation: none; } }
 .game-detail { display: flex; gap: 16px; align-items: center; margin-top: 14px; padding-left: 0; }
 .ach-card {
   display: flex; gap: 10px; align-items: center; width: 290px; flex: 0 0 auto;
